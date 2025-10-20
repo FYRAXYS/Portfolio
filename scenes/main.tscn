@@ -1,0 +1,291 @@
+[gd_scene load_steps=14 format=3 uid="uid://b7yobuvulygou"]
+
+[ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
+[ext_resource type="Material" uid="uid://vp4tyqx43sbb" path="res://materials/platform_presentation.tres" id="2_jyhfs"]
+[ext_resource type="Material" uid="uid://cumhb0u48rxdv" path="res://materials/platform_projets.tres" id="2_sugp2"]
+[ext_resource type="Material" uid="uid://grgd4je4m081" path="res://materials/platform_competences.tres" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://bbjjbo37g65hi" path="res://scripts/player_camera.gd" id="3_tipki"]
+[ext_resource type="Material" uid="uid://cee44sdtdtlrn" path="res://materials/platform_contacts.tres" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://drndqmhwgno2p" path="res://scenes/presentation_text.tscn" id="5_tipki"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
+albedo_color = Color(0.44842517, 0.6877713, 0.7678464, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(39, 12.96875, 40)
+
+[node name="Portfolio" type="Node3D"]
+script = ExtResource("1_tefeu")
+
+[node name="World" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="World" instance=ExtResource("1_o5qli")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 1, 0)
+
+[node name="Terrain" type="Node" parent="World"]
+
+[node name="ground1" type="CSGBox3D" parent="World/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9641724, -0.5, -3.9100647)
+use_collision = true
+size = Vector3(119.89514, 1, 137.53522)
+material = SubResource("StandardMaterial3D_o5qli")
+
+[node name="Cameras" type="Node" parent="World"]
+
+[node name="TransitionCamera" type="Camera3D" parent="World/Cameras"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 57, 0)
+
+[node name="PresentationCamera" type="Camera3D" parent="World/Cameras"]
+transform = Transform3D(0.8660254, 0.4330127, -0.25000018, 9.3997e-08, 0.50000006, 0.8660254, 0.5000001, -0.74999994, 0.43301272, -32.66443, 24, -27)
+
+[node name="PlayerCamera" type="Camera3D" parent="World/Cameras"]
+transform = Transform3D(0.7071068, 0.61237246, -0.35355338, 0, 0.5, 0.86602545, 0.7071068, -0.61237246, 0.35355338, -6.001529, 9.997902, 6.0014896)
+script = ExtResource("3_tipki")
+
+[node name="Presentation" type="Node" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Presentation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 17.43341, -45)
+pixel_size = 0.1
+text = "PRESENTATION"
+
+[node name="platform1" type="CSGBox3D" parent="Presentation"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, 0.25, -45)
+use_collision = true
+size = Vector3(28, 0.5, 30)
+material = ExtResource("2_jyhfs")
+
+[node name="PresentationText" parent="Presentation/platform1" instance=ExtResource("5_tipki")]
+transform = Transform3D(-4.3711385e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, -1.6420282e-15, 4, 1, -8)
+
+[node name="Area3D" type="Area3D" parent="Presentation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -43)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Presentation/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.432495, 4.484375, -2)
+shape = SubResource("BoxShape3D_tefeu")
+debug_color = Color(0.5019608, 0.34509805, 0.92156863, 0.41960785)
+
+[node name="Projets" type="Node" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Projets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 7, -15)
+pixel_size = 0.1
+text = "PROJETS"
+
+[node name="platform1" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -44.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform2" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform3" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform4" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform4"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform5" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform5"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform6" type="CSGBox3D" parent="Projets"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5, 0.5, -15.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("2_sugp2")
+
+[node name="Label3D" type="Label3D" parent="Projets/platform6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="Competences" type="Node" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Competences"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20, 7, 24)
+pixel_size = 0.1
+text = "COMPETENCES :"
+
+[node name="platform1" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 4.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform2" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 12.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform3" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 20.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform4" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 28.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform4"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform5" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 36.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform5"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform6" type="CSGBox3D" parent="Competences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 44.5)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("3_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Competences/platform6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="Contacts" type="Node" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Contacts"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 51.5, 7, 24)
+pixel_size = 0.1
+text = "CONTACTS"
+
+[node name="platform1" type="CSGBox3D" parent="Contacts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0.5, 12.5)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = ExtResource("5_tbgi4")
+
+[node name="Label3D" type="Label3D" parent="Contacts/platform1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform2" type="CSGBox3D" parent="Contacts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0.5, 20.5)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = ExtResource("5_tbgi4")
+
+[node name="Label3D" type="Label3D" parent="Contacts/platform2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform3" type="CSGBox3D" parent="Contacts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0.5, 28.5)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = ExtResource("5_tbgi4")
+
+[node name="Label3D" type="Label3D" parent="Contacts/platform3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="platform4" type="CSGBox3D" parent="Contacts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0.5, 36.5)
+use_collision = true
+size = Vector3(3, 1, 3)
+material = ExtResource("5_tbgi4")
+
+[node name="Label3D" type="Label3D" parent="Contacts/platform4"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
+pixel_size = 0.05
+text = "TEXT"
+
+[node name="Bonus" type="Node" parent="."]
+
+[connection signal="body_entered" from="Presentation/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Presentation/Area3D" to="." method="_on_area_3d_body_exited"]

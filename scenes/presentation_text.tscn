@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://drndqmhwgno2p"]
+
+[ext_resource type="Texture2D" uid="uid://c72g3rgjpcpub" path="res://ressources/text/new_viewport_texture.tres" id="1_ysla1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ysla1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_bflse"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysla1"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = ExtResource("1_ysla1")
+
+[node name="PresentationText" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Panel" type="Panel" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ysla1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PresentationText" type="RichTextLabel" parent="SubViewport/Panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(205.205, 116.045)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[p]Lorem ipsum [/p]
+
+[p]Je vois aussi dans votre fichier que le Panel n'a pas de StyleBoxEmpty. Une fois que vous aurez corrigé le problème de l'Albedo, vous verrez probablement le fond gris du panneau. N'oubliez pas d'appliquer l'étape du New StyleBoxEmpty sur le nœud Panel pour le faire disparaître également.[/p]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+transform = Transform3D(15.872002, 0, 0, 0, 19.044003, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("QuadMesh_bflse")
+surface_material_override/0 = SubResource("StandardMaterial3D_ysla1")
