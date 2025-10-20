@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://drndqmhwgno2p"]
+[gd_scene load_steps=6 format=3 uid="uid://bi6chiw7uqu54"]
 
-[ext_resource type="Script" uid="uid://do4w4ysac03cs" path="res://scripts/load_presentation.gd" id="1_5nce7"]
-[ext_resource type="Texture2D" uid="uid://c72g3rgjpcpub" path="res://ressources/text/viewport_textures/new_viewport_texture.tres" id="1_ysla1"]
+[ext_resource type="Script" uid="uid://do4w4ysac03cs" path="res://scripts/load_presentation.gd" id="1_kqvbu"]
+[ext_resource type="Texture2D" uid="uid://c72g3rgjpcpub" path="res://ressources/text/viewport_textures/new_viewport_texture.tres" id="2_ijogs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ysla1"]
 
@@ -10,10 +10,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysla1"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = ExtResource("1_ysla1")
+albedo_texture = ExtResource("2_ijogs")
 
-[node name="presentation" type="Node3D"]
-script = ExtResource("1_5nce7")
+[node name="parcours" type="Node3D"]
+script = ExtResource("1_kqvbu")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
