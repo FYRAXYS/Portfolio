@@ -88,6 +88,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.432495, 4.484375, -2)
 shape = SubResource("BoxShape3D_tefeu")
 debug_color = Color(0.5019608, 0.34509805, 0.92156863, 0.41960785)
 
+[node name="Parcours" type="Node" parent="Presentation"]
+
+[node name="platform2" type="CSGBox3D" parent="Presentation/Parcours"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -45, 0.25, -57.5)
+use_collision = true
+size = Vector3(3, 0.5, 8)
+material = ExtResource("2_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Presentation/Parcours/platform2"]
+transform = Transform3D(-4.3711392e-08, 1.0000001, 4.776714e-16, 8.881784e-16, 4.776715e-16, 1.0000001, 1, 4.371139e-08, 3.5527137e-15, 0, 1, 0)
+pixel_size = 0.05
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Parcours"
+
+[node name="platform3" type="CSGBox3D" parent="Presentation/Parcours"]
+transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, -44.942024, 0.25, -48.717743)
+use_collision = true
+size = Vector3(10, 0.5, 10)
+material = ExtResource("2_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Presentation/Parcours/platform3"]
+transform = Transform3D(-2.9802322e-08, 1.0000001, 4.776714e-16, 8.881784e-16, 4.776715e-16, 1.0000001, 1, 2.9802322e-08, 3.5527137e-15, 2.1906776, 1, -0.44828796)
+pixel_size = 0.05
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BUT 
+INFORMATIQUE"
+font_size = 22
+language = "fr"
+
+[node name="Label3D2" type="Label3D" parent="Presentation/Parcours/platform3"]
+transform = Transform3D(-2.9802322e-08, 1.0000001, 4.776714e-16, 8.881784e-16, 4.776715e-16, 1.0000001, 1, 2.9802322e-08, 3.5527137e-15, -2.121315, 1, -3.6742363)
+pixel_size = 0.05
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "2ème année, Parcours
+Développement 
+d'Applications
+IUT2 de Grenoble
+// 2024-2026"
+font_size = 15
+horizontal_alignment = 0
+language = "fr"
+
+[node name="platform4" type="CSGBox3D" parent="Presentation/Parcours"]
+transform = Transform3D(0.12796476, 0, 0.9917788, 0, 1, 0, -0.9917788, 0, 0.12796476, -43.58871, 0.25, -36.352364)
+use_collision = true
+size = Vector3(10, 0.5, 10)
+material = ExtResource("2_jyhfs")
+
+[node name="Label3D" type="Label3D" parent="Presentation/Parcours/platform4"]
+transform = Transform3D(-2.9802322e-08, 1.0000001, 4.776713e-16, 8.881784e-16, 4.776715e-16, 1.0000001, 1, 2.9802322e-08, 3.5527137e-15, 3.310423, 1, 0.41552734)
+pixel_size = 0.05
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "bac général"
+font_size = 22
+uppercase = true
+language = "fr"
+
+[node name="Label3D2" type="Label3D" parent="Presentation/Parcours/platform4"]
+transform = Transform3D(-2.9802322e-08, 1.0000001, 4.7767137e-16, 8.881784e-16, 4.776715e-16, 1.0000001, 1, 2.9802322e-08, 3.5527137e-15, -1.1295338, 1, -3.8021965)
+pixel_size = 0.05
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Spécialité NSI/HGGSP
+Lycée Vaugelas
+Chambéry
+// 2021-2024"
+font_size = 15
+horizontal_alignment = 0
+language = "fr"
+
 [node name="Projets" type="Node" parent="."]
 
 [node name="Label3D" type="Label3D" parent="Projets"]
