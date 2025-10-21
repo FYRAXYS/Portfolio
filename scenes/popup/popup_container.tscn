@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5psdbnap1dy1"]
+
+[ext_resource type="PackedScene" uid="uid://cupoeonbigosn" path="res://scenes/popup/projet_1.tscn" id="1_g5j7c"]
+[ext_resource type="PackedScene" uid="uid://l60h7qj73c24" path="res://scenes/popup/projet_2.tscn" id="2_sujgl"]
+
+[node name="popup_container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="projet1" parent="." instance=ExtResource("1_g5j7c")]
+visible = false
+layout_mode = 1
+
+[node name="projet2" parent="." instance=ExtResource("2_sujgl")]
+visible = false
+layout_mode = 1
