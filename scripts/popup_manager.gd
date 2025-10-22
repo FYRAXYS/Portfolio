@@ -7,3 +7,4 @@ func _ready() -> void:
 
 func _on_press():
 	self.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

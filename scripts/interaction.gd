@@ -14,7 +14,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and is_player_inside_area :
 		print("sucess")
 		PopUpScenePath.get_node(popup_number).show()
-		
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
