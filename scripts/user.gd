@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	# On crée le vecteur de direction directement dans l'espace monde.
 	# On n'utilise PLUS transform.basis. "move_forward" correspondra toujours à -Z.
 	var direction = Vector3(input_direction_2D.x, 0, input_direction_2D.y).normalized()
-	direction = direction.rotated(Vector3.UP, -45.0)
+	direction = direction.rotated(Vector3.UP, -90.0)
 	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
