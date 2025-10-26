@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5psdbnap1dy1"]
+[gd_scene load_steps=4 format=3 uid="uid://b5psdbnap1dy1"]
 
 [ext_resource type="PackedScene" uid="uid://cupoeonbigosn" path="res://scenes/popup/projet_1.tscn" id="1_g5j7c"]
+[ext_resource type="Script" uid="uid://cfni32gmxoc1k" path="res://scripts/message_manager.gd" id="1_sujgl"]
 [ext_resource type="PackedScene" uid="uid://l60h7qj73c24" path="res://scenes/popup/projet_2.tscn" id="2_sujgl"]
 
 [node name="popup_container" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sujgl")
 
 [node name="projet1" parent="." instance=ExtResource("1_g5j7c")]
 visible = false
@@ -18,3 +20,31 @@ layout_mode = 1
 [node name="projet2" parent="." instance=ExtResource("2_sujgl")]
 visible = false
 layout_mode = 1
+
+[node name="InteractText" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DebugRect" type="ColorRect" parent="InteractText"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 1, 0.627451)
+
+[node name="Label" type="Label" parent="InteractText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "PRESS [E] TO INTERACT"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="InteractText" to="." method="_on_text_hover"]
+[connection signal="mouse_exited" from="InteractText" to="." method="_on_text_unhover"]
+[connection signal="mouse_entered" from="InteractText/Label" to="." method="_on_text_hover"]
+[connection signal="mouse_exited" from="InteractText/Label" to="." method="_on_text_unhover"]
