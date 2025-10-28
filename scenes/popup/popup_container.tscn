@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://l60h7qj73c24" path="res://scenes/popup/projet_2.tscn" id="2_sujgl"]
 
 [node name="popup_container" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
