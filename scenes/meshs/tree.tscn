@@ -1,58 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c55uchs47t0p0"]
+[gd_scene load_steps=2 format=3 uid="uid://c55uchs47t0p0"]
 
-[ext_resource type="Material" uid="uid://uc8oyhc2u2qk" path="res://materials/tree_tronc.tres" id="1_a7rim"]
-[ext_resource type="Material" uid="uid://na21ehtjk3rv" path="res://materials/tree_leaf1.tres" id="2_7kcsg"]
-[ext_resource type="Material" uid="uid://vxfwy50ybik3" path="res://materials/tree_leaf2.tres" id="3_13gmg"]
-[ext_resource type="Material" uid="uid://hwqvwsyajlt5" path="res://materials/tree_leaf3.tres" id="4_13gmg"]
+[ext_resource type="ArrayMesh" uid="uid://cpy1mfo6g5vg5" path="res://materials/objets/tree.obj" id="1_a7rim"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_bsbq4"]
-material = ExtResource("1_a7rim")
-top_radius = 0.3
-radial_segments = 30
-cap_top = false
-cap_bottom = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_a7rim"]
-material = ExtResource("2_7kcsg")
-top_radius = 0.0
-bottom_radius = 1.1
-height = 1.635
-cap_top = false
-cap_bottom = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_sdcuy"]
-material = ExtResource("3_13gmg")
-top_radius = 0.0
-bottom_radius = 0.85
-height = 1.685
-cap_top = false
-cap_bottom = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_7kcsg"]
-material = ExtResource("4_13gmg")
-top_radius = 0.0
-bottom_radius = 0.71
-height = 1.465
-cap_top = false
-cap_bottom = false
-
-[node name="tronc" type="MeshInstance3D"]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 1.6, 0)
-mesh = SubResource("CylinderMesh_bsbq4")
-
-[node name="tree" type="Node3D" parent="."]
-
-[node name="leaf1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.6000001, 0, 0, 0, 1.6000001, 0, 0, 0, 1.6000001, 0, 2.1133418, 0)
-mesh = SubResource("CylinderMesh_a7rim")
-skeleton = NodePath("../tree")
-
-[node name="leaf2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.6000001, 0, 0, 0, 1.6000001, 0, 0, 0, 1.6000001, 0, 3.3103366, 0)
-mesh = SubResource("CylinderMesh_sdcuy")
-skeleton = NodePath("../tree")
-
-[node name="leaf3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.6000001, 0, 0, 0, 1.6000001, 0, 0, 0, 1.6000001, 0, 4.247079, 0)
-mesh = SubResource("CylinderMesh_7kcsg")
-skeleton = NodePath("../tree")
+[node name="tree" type="MeshInstance3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+mesh = ExtResource("1_a7rim")

@@ -61,16 +61,15 @@ focus_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
-text = "[center][font_size={40}][u]Recueil des besoins et création d'un site pour une entreprise[/u][/font_size][/center]
+text = "[center][font_size={60}][u]Recueil des besoins et création d'un site pour une entreprise[/u][/font_size][/center]
 
-[font_size={20}]
+[font_size={40}]
 [p]Ce Projet peut être divisé en deux étapes : [/p]
-[ul] 
-1 / La création d'un recueil des besoins pour le site web fictif d'une ESN
+[ul]1 / La création d'un recueil des besoins pour le site web fictif d'une ESN
 2 / La création du site web pour cette ESN
 [/ul]
 
-[font_size={30}]
+[font_size={50}]
 Etape 1 :
 [/font_size]
 
@@ -83,7 +82,7 @@ Son financement, sa stratégie, ses valeurs
 Ses clients et ses concurrents (majoritairement d'autres ESN comme Orange ou encore Cap Gemini)
 [/ul]
 
-[font_size={30}]
+[font_size={50}]
 Etape 2 :
 [/font_size]
 
@@ -93,6 +92,8 @@ Etape 2 :
 
 [center][img]ressources/images/projet4-2.png[/img][/center]
 
+[br]
+
 [p]Enfin, nous avons pu créer le site web en utilisant de l'HTML et du CSS. Le site est composé de 4 pages :[/p]
 [ul]
 Une page d'accueil présentant l'entreprise de façon abrégée
@@ -100,10 +101,6 @@ Une page de présentation de l'organisation de l'entreprise
 Une page de présentation des services de l'entreprise
 Une page de présentation des valeurs sociales et écoresponsables de l'entreprise
 [/ul]
-
-
-
-
 
 
 
