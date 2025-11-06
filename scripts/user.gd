@@ -24,7 +24,8 @@ func _physics_process(delta: float) -> void:
 	# On crée le vecteur de direction directement dans l'espace monde.
 	# On n'utilise PLUS transform.basis. "move_forward" correspondra toujours à -Z.
 	var direction = Vector3(input_direction_2D.x, 0, input_direction_2D.y).normalized()
-	direction = direction.rotated(Vector3.UP, -45.0)
+	var angle_rad = deg_to_rad(-45.0)
+	direction = direction.rotated(Vector3.UP, angle_rad)
 	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
@@ -38,7 +39,11 @@ func _physics_process(delta: float) -> void:
 	# le personnage dans la direction du mouvement MONDIAL.
 	if direction != Vector3.ZERO:
 		var target_angle = atan2(direction.x, direction.z)
+		#target_angle = roundi(target_angle)
+		#rotation.y = roundi(rotation.y)
 		rotation.y = lerp_angle(rotation.y, target_angle, delta * TURN_SPEED)
+		
+		print("target : " + str(target_angle) + " | rotation : " + str(global_rotation.y))
 	
 	if Input.is_action_just_pressed("slide") and is_on_floor():
 		change_state(!is_sliding)
