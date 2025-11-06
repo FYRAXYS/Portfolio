@@ -4,8 +4,8 @@ extends CharacterBody3D
 # On garde le Pivot pour les maillages visuels
 @onready var pivot: Node3D = $CollisionShape3D/Pivot
 var speed: float = 10.0
-const WALK_SPEED: float = 10.0
-const SLIDE_SPEED: float = 20.0
+const WALK_SPEED: float = 15.0
+const SLIDE_SPEED: float = 25.0
 const TURN_SPEED: float = 10.0
 
 func _ready() -> void:
@@ -39,11 +39,10 @@ func _physics_process(delta: float) -> void:
 	# le personnage dans la direction du mouvement MONDIAL.
 	if direction != Vector3.ZERO:
 		var target_angle = atan2(direction.x, direction.z)
-		#target_angle = roundi(target_angle)
-		#rotation.y = roundi(rotation.y)
+
 		rotation.y = lerp_angle(rotation.y, target_angle, delta * TURN_SPEED)
 		
-		print("target : " + str(target_angle) + " | rotation : " + str(global_rotation.y))
+		#print("target : " + str(target_angle) + " | rotation : " + str(global_rotation.y))
 	
 	if Input.is_action_just_pressed("slide") and is_on_floor():
 		change_state(!is_sliding)
