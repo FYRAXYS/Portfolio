@@ -35,6 +35,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 113.0
+offset_right = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -44,45 +46,63 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
 
 [node name="Rect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-color = Color(1, 1, 1, 0)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Rect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.18039216, 0.56078434, 0.1764706, 0.64705884)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
-text = "[center][font_size={60}][u]Recueil des besoins et création d'un site pour une entreprise[/u][/font_size][/center]
+text = "[br]
+[br]
 
-[font_size={40}]
+[center][font_size={55}][u]Recueil des besoins et création d'un site pour une entreprise[/u][/font_size][/center]
+
+[br]
+[br]
+
+[center]
+	[table={1},{valign},{alignement_row}]{
+		[cell {border = red}][img]ressources/images/group.png[/img][font_size={35}]  4 personnes[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][font_size={35}]  Novembre / Janvier 2024[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][font_size={35}]  HTML5, CSS[/font_size][/cell]
+	}[/table]
+[/center]
+
+[font_size={35}]
 [p]Ce Projet peut être divisé en deux étapes : [/p]
 [ul]1 / La création d'un recueil des besoins pour le site web fictif d'une ESN
 2 / La création du site web pour cette ESN
 [/ul]
 
-[font_size={50}]
+[font_size={40}]
 Etape 1 :
 [/font_size]
 
 [p]Après avoir constitué une équipe de 6 personnes, la première étape de ce projet consistait à réaliser un recueil des besoins pour l'ESN (Entreprise de Services Numériques) SCC France, spécialisée dans la transition numérique des entreprises. Ce document se découpait en plusieurs parties :[/p]
 
 [ul]
-L'activité de l'entreprise, son domaine, ses équipements et services
-Son organisation juridique, géographique, opérationnelle
-Son financement, sa stratégie, ses valeurs
-Ses clients et ses concurrents (majoritairement d'autres ESN comme Orange ou encore Cap Gemini)
+	L'activité de l'entreprise, son domaine, ses équipements et services
+	Son organisation juridique, géographique, opérationnelle
+	Son financement, sa stratégie, ses valeurs
+	Ses clients et ses concurrents (majoritairement d'autres ESN comme Orange ou encore Cap Gemini)
 [/ul]
 
-[font_size={50}]
+[font_size={40}]
 Etape 2 :
 [/font_size]
 
@@ -96,10 +116,10 @@ Etape 2 :
 
 [p]Enfin, nous avons pu créer le site web en utilisant de l'HTML et du CSS. Le site est composé de 4 pages :[/p]
 [ul]
-Une page d'accueil présentant l'entreprise de façon abrégée
-Une page de présentation de l'organisation de l'entreprise
-Une page de présentation des services de l'entreprise
-Une page de présentation des valeurs sociales et écoresponsables de l'entreprise
+	Une page d'accueil présentant l'entreprise de façon abrégée
+	Une page de présentation de l'organisation de l'entreprise
+	Une page de présentation des services de l'entreprise
+	Une page de présentation des valeurs sociales et écoresponsables de l'entreprise
 [/ul]
 
 

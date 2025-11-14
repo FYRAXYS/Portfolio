@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://l60h7qj73c24"]
+[gd_scene load_steps=4 format=3 uid="uid://l60h7qj73c24"]
 
 [ext_resource type="Script" uid="uid://b7ufmjpiw0e8s" path="res://scripts/popup_manager.gd" id="1_gsnui"]
+[ext_resource type="Shader" uid="uid://ckn4330j45mxf" path="res://materials/shaders/popup.gdshader" id="2_rf7v5"]
 
-[node name="projet1" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_evusw"]
+shader = ExtResource("2_rf7v5")
+shader_parameter/glass_color = Color(1, 1, 1, 0.627451)
+shader_parameter/blur_size = 4.00000019
+
+[node name="projet2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +17,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gsnui")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_evusw")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,31 +29,108 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.09604799, 0.31521097, 0.21819192, 0.7647059)
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -11.5
-offset_right = 576.0
-offset_bottom = 11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.0
+offset_right = -139.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "PROJET 2"
-horizontal_alignment = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Rect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.18039216, 0.56078434, 0.1764706, 0.64705884)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[br]
+[br]
+
+[center][font_size={55}][u]Développement d'une application pour la gestion d'évènements sportifs[/u][/font_size][/center]
+
+[br]
+[br]
+
+[center]
+	[table={1},{valign},{alignement_row}]{
+		[cell {border = red}][img]ressources/images/group.png[/img][font_size={35}]  6 personnes[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][font_size={35}]  Janvier / Juin 2025[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][font_size={35}]  Java, JavaFX, R Studio[/font_size][/cell]
+	}[/table]
+[/center]
+
+[font_size={35}]
+[p]Ce Projet peut être divisé en deux étapes : [/p]
+[ul]1 / La création d'un recueil des besoins pour le site web fictif d'une ESN
+2 / La création du site web pour cette ESN
+[/ul]
+
+[font_size={40}]
+Etape 1 :
+[/font_size]
+
+[p]Après avoir constitué une équipe de 6 personnes, la première étape de ce projet consistait à réaliser un recueil des besoins pour l'ESN (Entreprise de Services Numériques) SCC France, spécialisée dans la transition numérique des entreprises. Ce document se découpait en plusieurs parties :[/p]
+
+[ul]
+	L'activité de l'entreprise, son domaine, ses équipements et services
+	Son organisation juridique, géographique, opérationnelle
+	Son financement, sa stratégie, ses valeurs
+	Ses clients et ses concurrents (majoritairement d'autres ESN comme Orange ou encore Cap Gemini)
+[/ul]
+
+[font_size={40}]
+Etape 2 :
+[/font_size]
+
+[p]Une fois le recueil des besoins terminé, nous avons pu passer à la création du site web pour l'ESN. Pour mieux organiser notre travail, nous avons d'abord réalisé un wireframe (= maquette) de notre site à l'aide de l'outil en ligne Whimsical. Cela nous a permis de déterminer la structure du site, les différentes pages, les liens entre elles, ainsi que le contenu de chaque page.[/p]
+
+[center][img]ressources/images/projet4-1.png[/img][/center]
+
+[center][img]ressources/images/projet4-2.png[/img][/center]
+
+[br]
+
+[p]Enfin, nous avons pu créer le site web en utilisant de l'HTML et du CSS. Le site est composé de 4 pages :[/p]
+[ul]
+	Une page d'accueil présentant l'entreprise de façon abrégée
+	Une page de présentation de l'organisation de l'entreprise
+	Une page de présentation des services de l'entreprise
+	Une page de présentation des valeurs sociales et écoresponsables de l'entreprise
+[/ul]
+
+
+
+[/font_size]"
+selection_enabled = true
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(130.085, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "EXIT"

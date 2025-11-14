@@ -9,16 +9,10 @@ const TRANSITION_SPEED: float = 7.0
 var target_camera: Camera3D
 var selected_camera: Camera3D
 
-# On transforme _ready en une fonction asynchrone pour pouvoir utiliser 'await'
+
 func _ready() -> void:
-	# --- LA CORRECTION EST ICI ---
-	# On attend la toute première image physique du jeu.
-	# Cela garantit que tous les nœuds, y compris PlayerCamera, ont exécuté
-	# leur premier _physics_process et sont à leur position de départ correcte.
 	await get_tree().physics_frame
 
-	# Maintenant que tout est bien initialisé, on peut configurer les caméras
-	# en toute sécurité, en sachant que PlayerCamera.global_transform est correct.
 	selected_camera = PlayerCamera
 	target_camera = PlayerCamera
 	
@@ -26,17 +20,13 @@ func _ready() -> void:
 	TransitionCamera.fov = PlayerCamera.fov
 	TransitionCamera.make_current()
 
+
 func _process(delta: float) -> void:
-	#print("PlayerCamera : " , $World/Cameras/PlayerCamera.global_position)
-	#print("TransitionCamera : " , $World/Cameras/TransitionCamera.global_position)
-	
 	if is_instance_valid(target_camera):
 		var target_transform = target_camera.global_transform
 		TransitionCamera.global_transform = TransitionCamera.global_transform.interpolate_with(target_transform, TRANSITION_SPEED * delta)
-		
 		var target_fov = target_camera.fov
 		TransitionCamera.fov = lerp(TransitionCamera.fov, target_fov, TRANSITION_SPEED * delta)
-		
 		var distance_to_target = TransitionCamera.global_position.distance_to(target_transform.origin)
 		
 		if distance_to_target < 0.01:
@@ -53,8 +43,8 @@ func _change_camera(new_camera: Camera3D) -> void:
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
 	_change_camera(PresentationCamera)
-	print("entree")
+	#print("entree")
 
 func _on_area_3d_body_exited(_body: Node3D) -> void:
 	_change_camera(PlayerCamera)
-	print("sortie")
+	#print("sortie")
