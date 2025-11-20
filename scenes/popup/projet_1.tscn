@@ -76,10 +76,10 @@ text = "[br]
 [br]
 
 [center]
-	[table={1},{valign},{alignement_row}]{
-		[cell {border = red}][img]ressources/images/group.png[/img][font_size={35}]  4 personnes[/font_size][/cell]
-		[cell][img]ressources/images/clock.png[/img][font_size={35}]  Novembre / Janvier 2024[/font_size][/cell]
-		[cell][img]ressources/images/code.png[/img][font_size={35}]  HTML5, CSS[/font_size][/cell]
+	[table=2]{
+		[cell][img]ressources/images/group.png[/img][/cell][cell][font_size={35}]  4 personnes[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Fin 2024[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  HTML5, CSS[/font_size][/cell]
 	}[/table]
 [/center]
 
@@ -93,7 +93,7 @@ text = "[br]
 Etape 1 :
 [/font_size]
 
-[p]Après avoir constitué une équipe de 6 personnes, la première étape de ce projet consistait à réaliser un recueil des besoins pour l'ESN (Entreprise de Services Numériques) SCC France, spécialisée dans la transition numérique des entreprises. Ce document se découpait en plusieurs parties :[/p]
+[p]Après avoir constitué une équipe de 4 personnes, la première étape de ce projet consistait à réaliser un recueil des besoins pour l'ESN (Entreprise de Services Numériques) SCC France, spécialisée dans la transition numérique des entreprises. Ce document se découpait en plusieurs parties :[/p]
 
 [ul]
 	L'activité de l'entreprise, son domaine, ses équipements et services
@@ -108,9 +108,11 @@ Etape 2 :
 
 [p]Une fois le recueil des besoins terminé, nous avons pu passer à la création du site web pour l'ESN. Pour mieux organiser notre travail, nous avons d'abord réalisé un wireframe (= maquette) de notre site à l'aide de l'outil en ligne Whimsical. Cela nous a permis de déterminer la structure du site, les différentes pages, les liens entre elles, ainsi que le contenu de chaque page.[/p]
 
-[center][img]ressources/images/projet4-1.png[/img][/center]
-
-[center][img]ressources/images/projet4-2.png[/img][/center]
+[center]
+	[table=2]{
+		[cell][img]ressources/images/projet1-1.png[/img][/cell][cell][img]ressources/images/projet1-2.png[/img][/cell]
+	}[/table]
+[/center]
 
 [br]
 

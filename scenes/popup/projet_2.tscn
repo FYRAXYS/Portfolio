@@ -76,53 +76,69 @@ text = "[br]
 [br]
 
 [center]
-	[table={1},{valign},{alignement_row}]{
-		[cell {border = red}][img]ressources/images/group.png[/img][font_size={35}]  6 personnes[/font_size][/cell]
-		[cell][img]ressources/images/clock.png[/img][font_size={35}]  Janvier / Juin 2025[/font_size][/cell]
-		[cell][img]ressources/images/code.png[/img][font_size={35}]  Java, JavaFX, R Studio[/font_size][/cell]
+	[table=2]{
+		[cell][img]ressources/images/group.png[/img][/cell][cell][font_size={35}]  6 personnes[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Janvier / Juin 2025[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  Java, JavaFX, R Studio[/font_size][/cell]
 	}[/table]
 [/center]
 
 [font_size={35}]
-[p]Ce Projet peut être divisé en deux étapes : [/p]
-[ul]1 / La création d'un recueil des besoins pour le site web fictif d'une ESN
-2 / La création du site web pour cette ESN
+[p]Ce Projet peut être divisé en trois étapes : [/p]
+[ul]1 / Cadrage du projet
+2 / Conception
+3 / Développement
 [/ul]
 
 [font_size={40}]
-Etape 1 :
+Etape 1 : Cadrage du projet
 [/font_size]
 
-[p]Après avoir constitué une équipe de 6 personnes, la première étape de ce projet consistait à réaliser un recueil des besoins pour l'ESN (Entreprise de Services Numériques) SCC France, spécialisée dans la transition numérique des entreprises. Ce document se découpait en plusieurs parties :[/p]
+[p]Ce projet a commencé par la formation d'une équipe de 6 personnes. Une fois le groupe créé, nous avons initié la phase de cadrage du projet : Les différents rôles au sein de l'équipe, les fonctionnalités de notre application, les utilisateurs concernés, ...
+Concrètement, tout le travail préparatoire de cette phase a été condensé dans un document de gestion de projet d'une dizaine de pages. Il se composait des sections suivantes : [/p]
 
 [ul]
-	L'activité de l'entreprise, son domaine, ses équipements et services
-	Son organisation juridique, géographique, opérationnelle
-	Son financement, sa stratégie, ses valeurs
-	Ses clients et ses concurrents (majoritairement d'autres ESN comme Orange ou encore Cap Gemini)
+	Une introduction brève qui rappelle les attendus du projet
+	Une spécification des besoins fonctionnels et non-fonctionnels
+	Les contraintes du projet (contraintes temporelles, de qualité, ou sur les ressources)
+	Une liste des différents risques du projet, divisés en plusieurs catégories (Humain, Matériel, Technologique)
+	Une matrice de criticité de ces risques ainsi que la stratégie de mitigation mise en place pour chacun d'entre eux
+	Une présentation des différents Personnæ de notre application
 [/ul]
+
 
 [font_size={40}]
-Etape 2 :
+Etape 2 : Conception et Modélisation
 [/font_size]
 
-[p]Une fois le recueil des besoins terminé, nous avons pu passer à la création du site web pour l'ESN. Pour mieux organiser notre travail, nous avons d'abord réalisé un wireframe (= maquette) de notre site à l'aide de l'outil en ligne Whimsical. Cela nous a permis de déterminer la structure du site, les différentes pages, les liens entre elles, ainsi que le contenu de chaque page.[/p]
+[p]Une fois ce document validé, nous avons pu passer à la seconde phase du projet. En partant de notre document de gestion de projets, nous avons récupéré les différents besoins (créer une compétition, ajouter un participant, ...) et avons attribué à chacun un degré de priorité vis-à-vis de l'implémentation.
+Pour justifier nos choix, nous avons également modélisé différents diagrammes de cas d'utilisation, des diagrammes de séquence ainsi que des diagrammes de classe métier.
+[/p]
 
-[center][img]ressources/images/projet4-1.png[/img][/center]
+[center]
+	[table=2]{
+		[cell][img]ressources/images/projet2-1.png[/img][/cell]
+		[cell][img]ressources/images/projet2-2.png[/img][/cell]
+		[cell][img]ressources/images/projet2-3.png[/img][/cell]
+	}[/table]
+[/center]
 
-[center][img]ressources/images/projet4-2.png[/img][/center]
+[p] En parallèle, nous avons également commencé à réfléchir au design de notre application, de ses différentes pages, et de la façon dont elles allaient interagir entre elles : [/p]
 
-[br]
-
-[p]Enfin, nous avons pu créer le site web en utilisant de l'HTML et du CSS. Le site est composé de 4 pages :[/p]
-[ul]
-	Une page d'accueil présentant l'entreprise de façon abrégée
-	Une page de présentation de l'organisation de l'entreprise
-	Une page de présentation des services de l'entreprise
-	Une page de présentation des valeurs sociales et écoresponsables de l'entreprise
-[/ul]
+[center]
+	[table=1]{
+		[cell][img]ressources/images/projet2-4.png[/img][/cell]
+		[cell][img]ressources/images/projet2-5.png[/img][/cell]
+	}[/table]
+[/center]
 
 
+[font_size={40}]
+Etape 3 : Développement
+[/font_size]
+
+[p]Enfin, la dernière étape de notre projet concerne le développement de l'application, une fois que tout les composants techniques et graphiques ont été déterminés. Nous avons choisi un modèle d'architecture MVC (Modèle - Vue - Contrôleur) pour notre application, chaque page étant représenté par une vue.
+Pour implémenter ce système, nous avons utilisé Java, avec JavaFX pour créer les différents élements des pages. Pour pouvoir travailler plus efficacement, nous avons également utilisé un répertoire Gitlab.[/p]
 
 [/font_size]"
 selection_enabled = true
