@@ -1,0 +1,152 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwpikmqwejytt"]
+
+[ext_resource type="Script" uid="uid://b7ufmjpiw0e8s" path="res://scripts/popup_manager.gd" id="1_0uyu3"]
+[ext_resource type="Shader" uid="uid://ckn4330j45mxf" path="res://materials/shaders/popup.gdshader" id="2_jr2in"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_evusw"]
+shader = ExtResource("2_jr2in")
+shader_parameter/glass_color = Color(1, 1, 1, 0.627451)
+shader_parameter/blur_size = 4.00000019
+
+[node name="projet3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0uyu3")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_evusw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.0
+offset_right = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Rect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.18039216, 0.56078434, 0.1764706, 0.64705884)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[br]
+[br]
+
+[center][font_size={55}][u]Développement d'une application de gestion pour les aidants familiaux[/u][/font_size][/center]
+
+[br]
+[br]
+
+[center]
+	[table=2]{
+		[cell][img]ressources/images/group.png[/img][/cell][cell][font_size={35}]  6 personnes[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Janvier / Juin 2025[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  Java, JavaFX, R Studio[/font_size][/cell]
+	}[/table]
+[/center]
+
+[font_size={35}]
+[p]Ce Projet peut être divisé en trois étapes : [/p]
+[ul]1 / Cadrage du projet
+2 / Conception
+3 / Développement
+[/ul]
+
+[font_size={40}]
+Etape 1 : Cadrage du projet
+[/font_size]
+
+[p]Ce projet a commencé par la formation d'une équipe de 6 personnes. Une fois le groupe créé, nous avons initié la phase de cadrage du projet : Les différents rôles au sein de l'équipe, les fonctionnalités de notre application, les utilisateurs concernés, ...
+Concrètement, tout le travail préparatoire de cette phase a été condensé dans un document de gestion de projet d'une dizaine de pages. Il se composait des sections suivantes : [/p]
+
+[ul]
+	Une introduction brève qui rappelle les attendus du projet
+	Une spécification des besoins fonctionnels et non-fonctionnels
+	Les contraintes du projet (contraintes temporelles, de qualité, ou sur les ressources)
+	Une liste des différents risques du projet, divisés en plusieurs catégories (Humain, Matériel, Technologique)
+	Une matrice de criticité de ces risques ainsi que la stratégie de mitigation mise en place pour chacun d'entre eux
+	Une présentation des différents Personnæ de notre application
+[/ul]
+
+
+[font_size={40}]
+Etape 2 : Conception et Modélisation
+[/font_size]
+
+[p]Une fois ce document validé, nous avons pu passer à la seconde phase du projet. En partant de notre document de gestion de projets, nous avons récupéré les différents besoins (créer une compétition, ajouter un participant, ...) et avons attribué à chacun un degré de priorité vis-à-vis de l'implémentation.
+Pour justifier nos choix, nous avons également modélisé différents diagrammes de cas d'utilisation, des diagrammes de séquence ainsi que des diagrammes de classe métier.
+[/p]
+
+[center]
+	[table=2]{
+		[cell][img]ressources/images/projet2-1.png[/img][/cell]
+		[cell][img]ressources/images/projet2-2.png[/img][/cell]
+		[cell][img]ressources/images/projet2-3.png[/img][/cell]
+	}[/table]
+[/center]
+
+[p] En parallèle, nous avons également commencé à réfléchir au design de notre application, de ses différentes pages, et de la façon dont elles allaient interagir entre elles : [/p]
+
+[center]
+	[table=1]{
+		[cell][img]ressources/images/projet2-4.png[/img][/cell]
+		[cell][img]ressources/images/projet2-5.png[/img][/cell]
+	}[/table]
+[/center]
+
+
+[font_size={40}]
+Etape 3 : Développement
+[/font_size]
+
+[p]Enfin, la dernière étape de notre projet concerne le développement de l'application, une fois que tout les composants techniques et graphiques ont été déterminés. Nous avons choisi un modèle d'architecture MVC (Modèle - Vue - Contrôleur) pour notre application, chaque page étant représenté par une vue.
+Pour implémenter ce système, nous avons utilisé Java, avec JavaFX pour créer les différents élements des pages. Pour pouvoir travailler plus efficacement, nous avons également utilisé un répertoire Gitlab.[/p]
+
+[/font_size]"
+selection_enabled = true
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130.085, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "EXIT"

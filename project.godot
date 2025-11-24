@@ -18,8 +18,9 @@ config/icon="uid://brxvfdaxopcpr"
 [file_customization]
 
 folder_colors={
+"res://addons/": "gray",
 "res://materials/": "orange",
-"res://ressources/": "gray",
+"res://ressources/": "purple",
 "res://scenes/": "green",
 "res://scripts/": "red",
 "res://web/": "blue"
