@@ -1,37 +1,18 @@
-[gd_scene load_steps=43 format=3 uid="uid://b7yobuvulygou"]
+[gd_scene load_steps=35 format=3 uid="uid://b7yobuvulygou"]
 
 [ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
-[ext_resource type="Image" uid="uid://7xf78jeq5vux" path="res://scenes/Portfolio/Heightmap_0_0.res" id="2_eb6dy"]
-[ext_resource type="Texture2D" uid="uid://ssmstmgpcryx" path="res://materials/textures/snow-texture.jpg" id="2_jbj1t"]
 [ext_resource type="Material" uid="uid://vp4tyqx43sbb" path="res://materials/platform_presentation.tres" id="2_jyhfs"]
 [ext_resource type="Material" uid="uid://cumhb0u48rxdv" path="res://materials/platform_projets.tres" id="2_sugp2"]
 [ext_resource type="Material" uid="uid://grgd4je4m081" path="res://materials/platform_competences.tres" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bbjjbo37g65hi" path="res://scripts/player_camera.gd" id="3_tipki"]
-[ext_resource type="Image" uid="uid://b326b8rt88eud" path="res://scenes/Portfolio/Snow_0_0.res" id="3_trceg"]
-[ext_resource type="Image" uid="uid://dd16vdfiyxpvy" path="res://scenes/Portfolio/Splatmap_0_0_0.res" id="4_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b5psdbnap1dy1" path="res://scenes/popup/popup_container.tscn" id="4_choun"]
 [ext_resource type="Material" uid="uid://cee44sdtdtlrn" path="res://materials/platform_contacts.tres" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://drndqmhwgno2p" path="res://scenes/presentation_text.tscn" id="5_tipki"]
+[ext_resource type="PackedScene" uid="uid://cfgkav4btgruq" path="res://materials/objets/terrain/terrain.glb" id="6_trceg"]
 [ext_resource type="Script" uid="uid://b26i2msimiwut" path="res://scripts/interaction.gd" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://b8h70t7mav8hb" path="res://materials/objets/ski_lift_pole.glb" id="8_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://c55uchs47t0p0" path="res://scenes/meshs/tree.tscn" id="11_ya4ey"]
-
-[sub_resource type="TextureSetResource" id="TextureSetResource_muem4"]
-albedoTexture = ExtResource("2_jbj1t")
-
-[sub_resource type="TextureSetsResource" id="TextureSetsResource_jkv2x"]
-textureSets = Array[TextureSetResource]([SubResource("TextureSetResource_muem4")])
-
-[sub_resource type="SnowResource" id="SnowResource_a8y0u"]
-
-[sub_resource type="ZoneResource" id="ZoneResource_jkv2x"]
-heightMapImage = ExtResource("2_eb6dy")
-splatmapsImage = Array[Image]([ExtResource("4_a8y0u")])
-snowImage = ExtResource("3_trceg")
-
-[sub_resource type="ZonesResource" id="ZonesResource_jbj1t"]
-zones = Array[ZoneResource]([SubResource("ZoneResource_jkv2x")])
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -104,28 +85,23 @@ script = ExtResource("1_tefeu")
 
 [node name="World" type="Node" parent="."]
 
-[node name="TerraBrush" type="TerraBrush" parent="World"]
-dataPath = "res://scenes/Portfolio"
-textureSets = SubResource("TextureSetsResource_jkv2x")
-snowDefinition = SubResource("SnowResource_a8y0u")
-terrainZones = SubResource("ZonesResource_jbj1t")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 278.206, -47.545, 0)
-metadata/_edit_lock_ = false
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource("Environment_sugp2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.9485883, -0.31485498, 0.032352436, -0.24999994, 0.8080127, 0.5334937, -0.19411433, 0.4979778, -0.8451851, 638, 0, 0)
 shadow_enabled = true
 
+[node name="terrain" parent="World" instance=ExtResource("6_trceg")]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, 0, -47, 0)
+
 [node name="CharacterBody3D" parent="World" instance=ExtResource("1_o5qli")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 317.8957, 87.17816, -26)
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 6.895691, 81.139114, 3)
 
 [node name="Terrain" type="Node" parent="World"]
 
 [node name="ground1" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 638, -0.5, 0)
 use_collision = true
 size = Vector3(30, 1, 30)
 material = SubResource("StandardMaterial3D_o5qli")
@@ -162,62 +138,87 @@ size = Vector3(60, 1, 30)
 material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="ground3" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1842575, -4.936886, 55.410675)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 637.81573, -4.936886, 55.410675)
 use_collision = true
 size = Vector3(60, 1, 30)
 material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="ground4" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1842579, 4.539716, -48.152103)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 637.81573, 4.539716, -48.152103)
 use_collision = true
 size = Vector3(42, 1, 62)
 material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="ground5" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 72.07706, 5.899659, -4.1521025)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 710.077, 5.899659, -4.1521025)
 use_collision = true
 size = Vector3(104, 1, 73)
 material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="bridge1" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(0.9823787, -0.18690126, 0, 0.18690126, 0.9823787, 0, 0, 0, 1, -29.424305, -3.2604961, -0.63382053)
+transform = Transform3D(0.9823787, -0.18690126, 0, 0.18690126, 0.9823787, 0, 0, 0, 1, 608.5757, -3.2604961, -0.63382053)
 use_collision = true
 size = Vector3(29.535889, 1, 7)
 material = SubResource("StandardMaterial3D_eb6dy")
 
 [node name="bridge2" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(-4.065753e-08, 1.6051505e-08, 1, 0.36721563, 0.93013585, 0, -0.93013585, 0.36721563, -4.371139e-08, 0.18199967, -3.093585, 21.512764)
+transform = Transform3D(-4.065753e-08, 1.6051505e-08, 1, 0.36721563, 0.93013585, 0, -0.93013585, 0.36721563, -4.371139e-08, 638.182, -3.093585, 21.512764)
 use_collision = true
 size = Vector3(14.682617, 1, 7)
 material = SubResource("StandardMaterial3D_eb6dy")
 
 [node name="bridge3" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(-4.065753e-08, 1.6051505e-08, 1, 0.36658242, 0.9303856, -2.9753394e-11, -0.9303856, 0.36658242, -4.3711378e-08, 0.1819992, 1.906415, -20.487236)
+transform = Transform3D(-4.065753e-08, 1.6051505e-08, 1, 0.36658242, 0.9303856, -2.9753394e-11, -0.9303856, 0.36658242, -4.3711378e-08, 638.182, 1.906415, -20.487236)
 use_collision = true
 size = Vector3(14.682617, 1, 7)
 material = SubResource("StandardMaterial3D_eb6dy")
 
 [node name="bridge4" type="CSGBox3D" parent="World/Terrain"]
-transform = Transform3D(0.9552733, -0.29572475, -2.2435274e-12, 0.29572475, 0.9552733, -2.9668105e-11, 1.0917489e-11, 2.7679192e-11, 1, 25.230692, 2.6913302, -0.48723602)
+transform = Transform3D(0.9552733, -0.29572475, -2.2435274e-12, 0.29572475, 0.9552733, -2.9668105e-11, 1.0917489e-11, 2.7679192e-11, 1, 663.2307, 2.6913302, -0.48723602)
 use_collision = true
 size = Vector3(22, 1, 7)
 material = SubResource("StandardMaterial3D_eb6dy")
 
-[node name="tree" parent="World/Terrain" instance=ExtResource("11_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -66)
-
 [node name="Deco" type="Node" parent="World/Terrain"]
 
 [node name="house" type="MeshInstance3D" parent="World/Terrain/Deco"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 9.694305, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 706, 9.694305, 37)
 mesh = SubResource("BoxMesh_jkv2x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Terrain/Deco/house"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 5, 0)
 mesh = SubResource("PrismMesh_muem4")
 
-[node name="ski lift pole" parent="World/Terrain/Deco" instance=ExtResource("8_jkv2x")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 71.77884, 4.606064, 9.630173)
+[node name="Lift Poles" type="Node" parent="World/Terrain/Deco"]
+
+[node name="ski lift pole" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 26.695457, 33.24863, 2.9547482)
+
+[node name="ski lift pole4" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 26.695457, 13.600136, 63.31047)
+
+[node name="ski lift pole5" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 26.695457, 4.192131, 105.626564)
+
+[node name="ski lift pole2" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 26.695457, 50.24863, -34.918602)
+
+[node name="ski lift pole3" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 26.695457, 76.85387, -80.43037)
+
+[node name="Trees" type="Node" parent="World/Terrain/Deco"]
+
+[node name="tree" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 8.83033, 41.254353, -30.264729)
+skeleton = NodePath("../../..")
+
+[node name="tree2" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
+transform = Transform3D(1.335, 0, 0, 0, 1.335, 0, 0, 0, 1.335, 16.507652, 35.86779, -18.847206)
+skeleton = NodePath("../../..")
+
+[node name="tree3" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -26.627495, 36.90764, -27.238407)
+skeleton = NodePath("../../..")
 
 [node name="Borders" type="Node" parent="World/Terrain"]
 
@@ -225,31 +226,31 @@ transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 71.77884, 4.606064, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Terrain/Borders/StaticBody3D"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -52, 1.5, -4)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 586, 1.5, -4)
 shape = SubResource("BoxShape3D_trceg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="World/Terrain/Borders/StaticBody3D"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 68, 2.5, -3.5)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 706, 2.5, -3.5)
 shape = SubResource("BoxShape3D_a8y0u")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="World/Terrain/Borders/StaticBody3D"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 8.5, 1.5, 65)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 646.5, 1.5, 65)
 shape = SubResource("BoxShape3D_jkv2x")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="World/Terrain/Borders/StaticBody3D"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 8.5, 1, -73)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 646.5, 1, -73)
 shape = SubResource("BoxShape3D_eb6dy")
 
 [node name="Cameras" type="Node" parent="World"]
 
 [node name="TransitionCamera" type="Camera3D" parent="World/Cameras"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 57, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 638, 57, 0)
 
 [node name="PresentationCamera" type="Camera3D" parent="World/Cameras"]
-transform = Transform3D(0.70710665, 0.6123725, -0.35355356, 9.3996995e-08, 0.50000006, 0.8660254, 0.70710695, -0.61237234, 0.35355332, 346.13223, 59.195297, 16.683475)
+transform = Transform3D(0.70710665, 0.6123725, -0.35355356, 9.3996995e-08, 0.50000006, 0.8660254, 0.70710695, -0.61237234, 0.35355332, 46.82373, 70.71207, 36.292908)
 
 [node name="PlayerCamera" type="Camera3D" parent="World/Cameras"]
-transform = Transform3D(0.70710665, 0.6123726, -0.3535534, -7.1054274e-15, 0.49999997, 0.86602545, 0.7071069, -0.61237234, 0.3535533, -6.001529, 9.997902, 6.0014896)
+transform = Transform3D(0.70710665, 0.6123726, -0.3535534, -7.1054274e-15, 0.49999997, 0.86602545, 0.7071069, -0.61237234, 0.3535533, 631.9985, 9.997902, 6.0014896)
 script = ExtResource("3_tipki")
 
 [node name="PopUps" type="Node" parent="."]
@@ -259,7 +260,7 @@ script = ExtResource("3_tipki")
 [node name="Presentation" type="Node" parent="."]
 
 [node name="platform1" type="CSGBox3D" parent="Presentation"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 363.55075, 31.959566, 10.481451)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 64.24225, 43.476334, 30.090889)
 use_collision = true
 size = Vector3(28, 0.5, 30)
 material = ExtResource("2_jyhfs")
@@ -272,14 +273,14 @@ transform = Transform3D(0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Presentation/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.432495, 4.484375, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -193.34451, 16.001143, 223.5091)
 shape = SubResource("BoxShape3D_tefeu")
 debug_color = Color(0.5019608, 0.34509805, 0.92156863, 1)
 
 [node name="Parcours" type="Node" parent="Presentation"]
 
 [node name="platform2" type="CSGBox3D" parent="Presentation/Parcours"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 356.12613, 31.959566, -14.620842)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 56.817627, 43.476334, 4.988594)
 use_collision = true
 size = Vector3(3, 0.5, 8)
 material = ExtResource("2_jyhfs")
@@ -292,7 +293,7 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "Parcours"
 
 [node name="platform3" type="CSGBox3D" parent="Presentation/Parcours"]
-transform = Transform3D(0.5, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.5, 349.95712, 31.959566, -8.36985)
+transform = Transform3D(0.5, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.5, 50.64862, 43.476334, 11.239586)
 use_collision = true
 size = Vector3(10, 0.5, 10)
 material = ExtResource("2_jyhfs")
@@ -322,7 +323,7 @@ horizontal_alignment = 0
 language = "fr"
 
 [node name="platform4" type="CSGBox3D" parent="Presentation/Parcours"]
-transform = Transform3D(0.79177827, 0, 0.6108087, 0, 1, 0, -0.6108087, 0, 0.79177827, 341.46335, 31.959566, 0.6236191)
+transform = Transform3D(0.79177827, 0, 0.6108087, 0, 1, 0, -0.6108087, 0, 0.79177827, 41.495853, 43.476334, 21.216955)
 use_collision = true
 size = Vector3(10, 0.5, 10)
 material = ExtResource("2_jyhfs")
@@ -353,7 +354,7 @@ language = "fr"
 [node name="Projets" type="Node" parent="."]
 
 [node name="platform1" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 283.11002, 32.202847, -84.32237)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24.844618, 41.600525, -39.520245)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -371,7 +372,7 @@ debug_color = Color(0.25490198, 0.61960787, 0.4, 1)
 [node name="Bouton" type="Node" parent="Projets/platform1"]
 
 [node name="projet1" type="Label3D" parent="Projets/platform1/Bouton"]
-transform = Transform3D(1, 0, 0, 0, 0.70710665, 0.7071067, 0, -0.7071067, 0.70710665, 283.1102, 33.064514, -81.70921)
+transform = Transform3D(1, 0, 0, 0, 0.70710665, 0.7071067, 0, -0.7071067, 0.70710665, -24.751616, 42.296856, -36.924644)
 pixel_size = 0.05
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -383,7 +384,7 @@ transform = Transform3D(0.37500003, -0.399519, 0.83651626, -0.22414388, 0.836516
 mesh = SubResource("TorusMesh_choun")
 
 [node name="platform2" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 293.10907, 32.189014, -100.3121)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.932268, 41.586685, -43.229446)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -401,7 +402,7 @@ debug_color = Color(0.25490198, 0.61960787, 0.4, 1)
 [node name="Bouton" type="Node" parent="Projets/platform2"]
 
 [node name="projet2" type="Label3D" parent="Projets/platform2/Bouton"]
-transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.70710677, 0, -0.70710677, 0.7071067, 293.1061, 33.20931, -97.43457)
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.70710677, 0, -0.70710677, 0.7071067, -6.871831, 42.385197, -40.655315)
 pixel_size = 0.05
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -413,7 +414,7 @@ transform = Transform3D(0.6601684, -0.47161222, 0.58460206, 0.35307476, 0.881806
 mesh = SubResource("PrismMesh_eb6dy")
 
 [node name="platform3" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 280.10907, 32.189014, -110.3121)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.84744, 41.586685, -65.50998)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -423,7 +424,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("CapsuleMesh_trceg")
 
 [node name="platform4" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 268.10907, 32.189014, -95.3121)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.340918, 41.586685, -52.73331)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -433,7 +434,7 @@ transform = Transform3D(0.49999997, -0.70710677, 0.49999997, 0.49999994, 0.70710
 mesh = SubResource("BoxMesh_a8y0u")
 
 [node name="platform5" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 258.10907, 32.189014, -108.3121)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -38.834312, 41.586685, -65.32211)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -443,7 +444,7 @@ transform = Transform3D(0.7806377, -0.34844583, 0.51883554, -2.4370314e-08, 0.83
 mesh = SubResource("SphereMesh_jkv2x")
 
 [node name="platform6" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 250.10907, 32.189014, -88.3121)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -41.679226, 41.586685, -39.225822)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -455,12 +456,12 @@ mesh = SubResource("CylinderMesh_jbj1t")
 [node name="Competences" type="Node" parent="."]
 
 [node name="Label3D" type="Label3D" parent="Competences"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.91409, 1.6740999, -8.1428585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 567.08594, 1.6740999, -8.1428585)
 pixel_size = 0.1
 text = "COMPETENCES"
 
 [node name="platform1" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 165.58911, 2.61662, -32.28923)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -90.54469, 0.2041359, -3.0402489)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -471,7 +472,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform2" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 173.58911, 2.61662, -32.28923)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -82.54469, 0.2041359, -3.0402489)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -482,7 +483,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform3" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 181.58911, 2.61662, -32.28923)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -74.54469, 0.2041359, -3.0402489)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -493,7 +494,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform4" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 189.58911, 2.61662, -32.28923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 11.791597)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -504,7 +505,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform5" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 197.58911, 2.61662, -32.28923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 19.791597)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -515,7 +516,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform6" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 205.58911, 2.61662, -32.28923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 27.791597)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("3_jyhfs")
@@ -528,7 +529,7 @@ text = "TEXT"
 [node name="Contacts" type="Node" parent="."]
 
 [node name="platform1" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.3413, 2.9658084, 86.70663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 73.88657)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -539,7 +540,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform2" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.3413, 2.9658084, 94.70663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 81.88657)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -550,7 +551,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform3" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.3413, 2.9658084, 102.70663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 89.88657)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -561,7 +562,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform4" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.3413, 2.9658084, 110.70663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 97.88657)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
