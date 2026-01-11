@@ -78,8 +78,8 @@ text = "[br]
 [center]
 	[table=2]{
 		[cell][img]ressources/images/group.png[/img][/cell][cell][font_size={35}]  6 personnes[/font_size][/cell]
-		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Janvier / Juin 2025[/font_size][/cell]
-		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  Java, JavaFX, R Studio[/font_size][/cell]
+		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Octobre 2025 / Janvier 2026[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  HTML, Bootstrap, Symfony, Twig[/font_size][/cell]
 	}[/table]
 [/center]
 
@@ -95,7 +95,7 @@ Etape 1 : Cadrage du projet
 [/font_size]
 
 [p]Ce projet a commencé par la formation d'une équipe de 6 personnes. Une fois le groupe créé, nous avons initié la phase de cadrage du projet : Les différents rôles au sein de l'équipe, les fonctionnalités de notre application, les utilisateurs concernés, ...
-Concrètement, tout le travail préparatoire de cette phase a été condensé dans un document de gestion de projet d'une dizaine de pages. Il se composait des sections suivantes : [/p]
+Concrètement, tout le travail préparatoire de cette phase a été condensé dans un document de cadrage de projet d'une dizaine de pages. Il se composait des sections suivantes : [/p]
 
 [ul]
 	Une introduction brève qui rappelle les attendus du projet
@@ -104,6 +104,7 @@ Concrètement, tout le travail préparatoire de cette phase a été condensé da
 	Une liste des différents risques du projet, divisés en plusieurs catégories (Humain, Matériel, Technologique)
 	Une matrice de criticité de ces risques ainsi que la stratégie de mitigation mise en place pour chacun d'entre eux
 	Une présentation des différents Personnæ de notre application
+	Une veille concurentielle et technologique pour notre application
 [/ul]
 
 
@@ -111,26 +112,13 @@ Concrètement, tout le travail préparatoire de cette phase a été condensé da
 Etape 2 : Conception et Modélisation
 [/font_size]
 
-[p]Une fois ce document validé, nous avons pu passer à la seconde phase du projet. En partant de notre document de gestion de projets, nous avons récupéré les différents besoins (créer une compétition, ajouter un participant, ...) et avons attribué à chacun un degré de priorité vis-à-vis de l'implémentation.
-Pour justifier nos choix, nous avons également modélisé différents diagrammes de cas d'utilisation, des diagrammes de séquence ainsi que des diagrammes de classe métier.
+[p]Une fois la première version de ce document validé, nous avons pu passer à la seconde phase qui consistait à l'étoffer avec de nouvelles sections.
 [/p]
 
-[center]
-	[table=2]{
-		[cell][img]ressources/images/projet2-1.png[/img][/cell]
-		[cell][img]ressources/images/projet2-2.png[/img][/cell]
-		[cell][img]ressources/images/projet2-3.png[/img][/cell]
-	}[/table]
-[/center]
+[p]
+En parallèle, nous avons commencé le design des maquettes de notre application.
+[/p]
 
-[p] En parallèle, nous avons également commencé à réfléchir au design de notre application, de ses différentes pages, et de la façon dont elles allaient interagir entre elles : [/p]
-
-[center]
-	[table=1]{
-		[cell][img]ressources/images/projet2-4.png[/img][/cell]
-		[cell][img]ressources/images/projet2-5.png[/img][/cell]
-	}[/table]
-[/center]
 
 
 [font_size={40}]

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cn0j0bt6ac3s4"
 path.s3tc="res://.godot/imported/ski_lift_pole_2.png-a201e6ae50908c59470d2807485755ec.s3tc.ctex"
+path.etc2="res://.godot/imported/ski_lift_pole_2.png-a201e6ae50908c59470d2807485755ec.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://materials/objets/ski_lift_pole_2.png"
-dest_files=["res://.godot/imported/ski_lift_pole_2.png-a201e6ae50908c59470d2807485755ec.s3tc.ctex"]
+dest_files=["res://.godot/imported/ski_lift_pole_2.png-a201e6ae50908c59470d2807485755ec.s3tc.ctex", "res://.godot/imported/ski_lift_pole_2.png-a201e6ae50908c59470d2807485755ec.etc2.ctex"]
 
 [params]
 
