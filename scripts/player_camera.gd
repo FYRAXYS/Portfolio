@@ -1,7 +1,7 @@
 extends Camera3D
 
 @onready var player_path: CharacterBody3D = $"../../CharacterBody3D"
-@export var offset: Vector3 = Vector3(-8, 12, 8)
+@export var offset: Vector3 = Vector3(-10, 20, 10)
 @export var follow_speed: float = 5.0
 
 var player: Node3D = null

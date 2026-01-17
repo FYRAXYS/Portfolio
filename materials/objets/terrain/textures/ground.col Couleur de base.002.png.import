@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cusk7t0il8t26"
-path="res://.godot/imported/index.apple-touch-icon.png-939ec69c79bbf504b92ad8ceed469d51.ctex"
+uid="uid://dk35r4qq72dk3"
+path="res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://web/index.apple-touch-icon.png"
-dest_files=["res://.godot/imported/index.apple-touch-icon.png-939ec69c79bbf504b92ad8ceed469d51.ctex"]
+source_file="res://materials/objets/terrain/textures/ground.col Couleur de base.002.png"
+dest_files=["res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.ctex"]
 
 [params]
 

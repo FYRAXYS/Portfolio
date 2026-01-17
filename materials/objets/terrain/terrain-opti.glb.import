@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfgkav4btgruq"
-path="res://.godot/imported/terrain.glb-60ad3db8c00f3491683c94dfb20509b9.scn"
+uid="uid://dwn7l1u3vdo5x"
+path="res://.godot/imported/terrain-opti.glb-61b4666a29a37e7703b6bc9070c7824f.scn"
 
 [deps]
 
-source_file="res://materials/objets/terrain/terrain.glb"
-dest_files=["res://.godot/imported/terrain.glb-60ad3db8c00f3491683c94dfb20509b9.scn"]
+source_file="res://materials/objets/terrain/terrain-opti.glb"
+dest_files=["res://.godot/imported/terrain-opti.glb-61b4666a29a37e7703b6bc9070c7824f.scn"]
 
 [params]
 
