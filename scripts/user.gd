@@ -17,9 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	speed = SLIDE_SPEED if is_sliding else WALK_SPEED
 	
-	var input_direction_2D = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var direction = Vector3(input_direction_2D.x, 0, input_direction_2D.y).normalized()
-	var angle_rad = deg_to_rad(-45.0)
+	var input_direction_2D:Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var direction:Vector3 = Vector3(input_direction_2D.x, 0, input_direction_2D.y).normalized()
+	var angle_rad:float = deg_to_rad(-45.0)
 	direction = direction.rotated(Vector3.UP, angle_rad)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if direction != Vector3.ZERO:
-		var target_angle = atan2(direction.x, direction.z)
+		var target_angle:float = atan2(direction.x, direction.z)
 		rotation.y = lerp_angle(rotation.y, target_angle, delta * TURN_SPEED)
 	
 	if Input.is_action_just_pressed("slide") and is_on_floor():
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 
 func change_state(state: bool) -> void:
 	is_sliding = state
-	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	var tween:Tween = create_tween().set_trans(Tween.TRANS_SINE)
 	
 	if is_sliding:
 		tween.tween_property(pivot, "rotation_degrees:x", 90, 0.2)
