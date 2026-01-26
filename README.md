@@ -1,3 +1,7 @@
 # PORTFOLIO
 
-© 2025 FYRAXYS. Tous droits réservés.
+Built with Godot Engine.
+
+Iceberg mesh by ***Poly by Google*** [CC-BY](https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/8sqTOfIjWml)
+
+© 2026 FYRAXYS. Tous droits réservés.
