@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bvlpf5vkogl78"
-path="res://.godot/imported/terrain-opti2.glb-59cce3553f4f1d704f7873ade5fc6483.scn"
+uid="uid://cvbsdwejew3m3"
+path="res://.godot/imported/Iceberg.glb-fd2d3a3c4881ac48963041149f179b8a.scn"
 
 [deps]
 
-source_file="res://materials/objets/terrain/terrain-opti2.glb"
-dest_files=["res://.godot/imported/terrain-opti2.glb-59cce3553f4f1d704f7873ade5fc6483.scn"]
+source_file="res://materials/objets/terrain/Iceberg.glb"
+dest_files=["res://.godot/imported/Iceberg.glb-fd2d3a3c4881ac48963041149f179b8a.scn"]
 
 [params]
 

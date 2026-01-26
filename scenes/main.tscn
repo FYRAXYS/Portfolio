@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b7yobuvulygou"]
+[gd_scene load_steps=36 format=3 uid="uid://b7yobuvulygou"]
 
 [ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dy86kp5xcee6p" path="res://materials/objets/clouds/cloud1.glb" id="5_muem4"]
 [ext_resource type="Material" uid="uid://cee44sdtdtlrn" path="res://materials/platform_contacts.tres" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://drndqmhwgno2p" path="res://scenes/presentation_text.tscn" id="5_tipki"]
-[ext_resource type="PackedScene" uid="uid://dwn7l1u3vdo5x" path="res://materials/objets/terrain/terrain-opti.glb" id="5_trceg"]
 [ext_resource type="PackedScene" uid="uid://ef7q55f6nufh" path="res://materials/objets/clouds/cloud2.glb" id="6_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://dp144rsv14bnu" path="res://materials/objets/clouds/cloud3.glb" id="7_0ld40"]
 [ext_resource type="Script" uid="uid://b26i2msimiwut" path="res://scripts/interaction.gd" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://b8h70t7mav8hb" path="res://materials/objets/ski_lift_pole.glb" id="8_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cvbsdwejew3m3" path="res://materials/objets/terrain/Iceberg.glb" id="10_0ld40"]
+[ext_resource type="PackedScene" uid="uid://bvlpf5vkogl78" path="res://materials/objets/terrain/terrain-opti2.glb" id="10_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://c55uchs47t0p0" path="res://scenes/meshs/tree.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://crt8iyyd8itis" path="res://materials/objets/terrain/bg.glb" id="14_a8y0u"]
 
@@ -116,7 +117,7 @@ transform = Transform3D(-0.0017605396, 0, -0.009843804, 0, 0.01, 0, 0.009843804,
 transform = Transform3D(-0.0014632477, 0, -0.009892366, 0, 0.01, 0, 0.009892366, 0, -0.0014632477, 38.51422, 2.6012268, 72.37619)
 
 [node name="ski lift pole5" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
-transform = Transform3D(-0.0010499707, 0, -0.009944724, 0, 0.009999999, 0, 0.009944724, 0, -0.0010499707, 80.54118, 12.399376, 82.3931)
+transform = Transform3D(-0.0010499707, 0, -0.009944724, 0, 0.009999999, 0, 0.009944724, 0, -0.0010499707, 80.54118, 7.398388, 82.3931)
 
 [node name="ski lift pole2" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.001931898, 0, -0.009811614, 0, 0.01, 0, 0.009811614, 0, -0.001931898, -55.41589, 8.268564, 55.059475)
@@ -226,9 +227,6 @@ skeleton = NodePath("")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 aabb = AABB(-0.4318269, -0.26110703, -0.20208636, 0.8636538, 0.52221406, 0.40417272)
 
-[node name="terrain-opti" parent="World/Terrain" instance=ExtResource("5_trceg")]
-transform = Transform3D(-3.934025e-07, 0, 9, 0, 9, 0, -9, 0, -3.934025e-07, 0, 0, 0)
-
 [node name="bg" parent="World/Terrain" instance=ExtResource("14_a8y0u")]
 transform = Transform3D(-1.3113416e-06, 0, -30, 0, 30, 0, 30, 0, -1.3113416e-06, 207.45424, 29.755333, -170.68283)
 
@@ -245,8 +243,31 @@ material = SubResource("StandardMaterial3D_muem4")
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/bg"]
 enable_mode = 1
 
-[node name="bg2" parent="World/Terrain" instance=ExtResource("14_a8y0u")]
-transform = Transform3D(48.37714, 0, -58.05581, 0, 75.56999, 0, 58.05581, 0, 48.37714, 134.0749, -0.27034378, -95.68029)
+[node name="terrain" parent="World/Terrain" instance=ExtResource("10_dp3eg")]
+transform = Transform3D(-3.934025e-07, 0, 9, 0, 9, 0, -9, 0, -3.934025e-07, 0, 0, 0)
+
+[node name="Icebergs" type="Node" parent="World/Terrain"]
+
+[node name="Iceberg" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(0.4777611, 0.7576001, 0.25037256, -0.7855747, 0.4977181, -0.0070066615, -0.13970236, -0.2078912, 0.8956364, -76.541016, 1.1444092e-05, -85.246254)
+
+[node name="Iceberg2" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(0.665, 0, 0, 0, 0.665, 0, 0, 0, 0.665, -75.10541, -5.6346436, 108.71114)
+
+[node name="Iceberg5" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, 98.32635, -5.634651, 99.10103)
+
+[node name="Iceberg6" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(0.02805947, -0.9945935, -0.20055273, 1.0145962, 0.028623788, 0, 0.005655743, -0.20047297, 0.9949893, 88.64136, -5.6346436, 105.42197)
+
+[node name="Iceberg7" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(-0.014635906, 0.51878333, -1.170064, 1.1284771, 0.5573578, 0.23300576, 0.6039248, -1.0288907, -0.46374416, 117.60361, -5.634651, 83.971596)
+
+[node name="Iceberg3" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(-0.22587882, 0, -0.46837884, 0, 0.52, 0, 0.46837884, 0, -0.22587882, -82.331276, -5.6346436, 95.495)
+
+[node name="Iceberg4" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(-0.024810156, 0.5168537, -0.051445957, 0.22451213, 0.05711594, 0.4655449, 0.46837884, 0, -0.22587882, -64.33872, -5.6346436, 121.88659)
 
 [node name="Cameras" type="Node" parent="World"]
 
