@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk35r4qq72dk3"
-path.s3tc="res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.s3tc.ctex"
-path.etc2="res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.etc2.ctex"
+uid="uid://bj7dkms2ufrq7"
+path.s3tc="res://.godot/imported/bg_Plan Couleur de base.png-b7aafed5a90e5f3fdcbcbae2cfc81071.s3tc.ctex"
+path.etc2="res://.godot/imported/bg_Plan Couleur de base.png-b7aafed5a90e5f3fdcbcbae2cfc81071.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "06ea6446528f19d054e39dc6edecd218"
+}
 
 [deps]
 
-source_file="res://materials/objets/terrain/textures/ground.col Couleur de base.002.png"
-dest_files=["res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.s3tc.ctex", "res://.godot/imported/ground.col Couleur de base.002.png-f919284532b349441ab06d9c02ff22cd.etc2.ctex"]
+source_file="res://materials/objets/terrain/bg_Plan Couleur de base.png"
+dest_files=["res://.godot/imported/bg_Plan Couleur de base.png-b7aafed5a90e5f3fdcbcbae2cfc81071.s3tc.ctex", "res://.godot/imported/bg_Plan Couleur de base.png-b7aafed5a90e5f3fdcbcbae2cfc81071.etc2.ctex"]
 
 [params]
 
