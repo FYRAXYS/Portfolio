@@ -42,8 +42,6 @@ func change_state(state: bool) -> void:
 	
 	if is_sliding:
 		tween.tween_property(pivot, "rotation_degrees:x", 90, 0.2)
-		print("Glissade")
 	
 	else:
 		tween.tween_property(pivot, "rotation_degrees:x", 0, 0.2)
-		print("Debout")

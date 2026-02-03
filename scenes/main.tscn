@@ -1,24 +1,19 @@
-[gd_scene load_steps=40 format=3 uid="uid://b7yobuvulygou"]
+[gd_scene load_steps=33 format=3 uid="uid://b7yobuvulygou"]
 
 [ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="Material" uid="uid://vp4tyqx43sbb" path="res://materials/platform_presentation.tres" id="2_jyhfs"]
 [ext_resource type="Material" uid="uid://cumhb0u48rxdv" path="res://materials/platform_projets.tres" id="2_sugp2"]
-[ext_resource type="Material" uid="uid://grgd4je4m081" path="res://materials/platform_competences.tres" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bbjjbo37g65hi" path="res://scripts/player_camera.gd" id="3_tipki"]
 [ext_resource type="PackedScene" uid="uid://b5psdbnap1dy1" path="res://scenes/popup/popup_container.tscn" id="4_choun"]
 [ext_resource type="ArrayMesh" uid="uid://cpy1mfo6g5vg5" path="res://materials/objets/tree.obj" id="5_0ld40"]
-[ext_resource type="PackedScene" uid="uid://dy86kp5xcee6p" path="res://materials/objets/clouds/cloud1.glb" id="5_muem4"]
 [ext_resource type="Material" uid="uid://cee44sdtdtlrn" path="res://materials/platform_contacts.tres" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://drndqmhwgno2p" path="res://scenes/presentation_text.tscn" id="5_tipki"]
-[ext_resource type="PackedScene" uid="uid://ef7q55f6nufh" path="res://materials/objets/clouds/cloud2.glb" id="6_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://dp144rsv14bnu" path="res://materials/objets/clouds/cloud3.glb" id="7_0ld40"]
 [ext_resource type="Script" uid="uid://b26i2msimiwut" path="res://scripts/interaction.gd" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://b8h70t7mav8hb" path="res://materials/objets/ski_lift_pole.glb" id="8_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cvbsdwejew3m3" path="res://materials/objets/terrain/Iceberg.glb" id="10_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bvlpf5vkogl78" path="res://materials/objets/terrain/terrain-opti2.glb" id="10_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://c55uchs47t0p0" path="res://scenes/meshs/tree.tscn" id="11_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://crt8iyyd8itis" path="res://materials/objets/terrain/bg.glb" id="14_a8y0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.32830942, 0.63534105, 0.89322805, 1)
@@ -74,12 +69,6 @@ material = SubResource("StandardMaterial3D_jkv2x")
 text = "Développeur"
 depth = 0.01
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
-albedo_color = Color(0.10980392, 0.72156864, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muem4"]
-albedo_color = Color(0.12156863, 0.5058824, 1, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
 size = Vector3(39, 12.96875, 40)
 
@@ -126,8 +115,20 @@ transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70
 [node name="ski lift pole" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.0017605396, 0, -0.009843804, 0, 0.01, 0, 0.009843804, 0, -0.0017605396, -9.784767, 1.180109, 62.66867)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain/Deco/Lift Poles/ski lift pole"]
+transform = Transform3D(1.0140209, 0, 99.99488, 0, 100, 0, -99.99488, 0, 1.0140209, -52.192383, 362.0185, 47.099182)
+visible = false
+use_collision = true
+size = Vector3(1, 5, 1)
+
 [node name="ski lift pole4" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.0014632477, 0, -0.009892366, 0, 0.01, 0, 0.009892366, 0, -0.0014632477, 38.51422, 2.6012268, 72.37619)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain/Deco/Lift Poles/ski lift pole4"]
+transform = Transform3D(1.01402, 0, 99.99488, 0, 100, 0, -99.99488, 0, 1.01402, -52.191895, 291.1095, 47.09961)
+visible = false
+use_collision = true
+size = Vector3(1, 5, 1)
 
 [node name="ski lift pole5" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.0010499707, 0, -0.009944724, 0, 0.009999999, 0, 0.009944724, 0, -0.0010499707, 80.54118, 7.398388, 82.3931)
@@ -135,8 +136,20 @@ transform = Transform3D(-0.0010499707, 0, -0.009944724, 0, 0.009999999, 0, 0.009
 [node name="ski lift pole2" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.001931898, 0, -0.009811614, 0, 0.01, 0, 0.009811614, 0, -0.001931898, -55.41589, 8.268564, 55.059475)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain/Deco/Lift Poles/ski lift pole2"]
+transform = Transform3D(1.0140209, 0, 99.99488, 0, 100, 0, -99.99488, 0, 1.0140209, -52.192383, 362.0185, 47.099182)
+visible = false
+use_collision = true
+size = Vector3(1, 5, 1)
+
 [node name="ski lift pole3" parent="World/Terrain/Deco/Lift Poles" instance=ExtResource("8_jkv2x")]
 transform = Transform3D(-0.0025912256, 0, -0.009658446, 0, 0.01, 0, 0.009658446, 0, -0.0025912256, -88.531815, 5.10993, 43.538483)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain/Deco/Lift Poles/ski lift pole3"]
+transform = Transform3D(1.0140209, 0, 99.99488, 0, 100, 0, -99.99488, 0, 1.0140209, -52.192383, 362.0185, 47.099182)
+visible = false
+use_collision = true
+size = Vector3(1, 5, 1)
 
 [node name="Trees" type="Node" parent="World/Terrain/Deco"]
 
@@ -151,6 +164,9 @@ calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
+
 [node name="tree2" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 6.1009264, 4.2851157, -12.342371)
 skeleton = NodePath("../../..")
@@ -161,6 +177,9 @@ visible = false
 calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree2"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
 
 [node name="tree3" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 45.206505, 5.60926, -0.32790184)
@@ -173,6 +192,9 @@ calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree3"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
+
 [node name="tree7" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 78.935425, 21.178947, -46.617218)
 skeleton = NodePath("../../..")
@@ -183,6 +205,9 @@ visible = false
 calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree7"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
 
 [node name="tree4" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 17.442694, 5.1806326, 65.21618)
@@ -195,6 +220,9 @@ calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree4"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
+
 [node name="tree5" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -29.643364, 3.2860947, -11.563911)
 skeleton = NodePath("../../..")
@@ -206,6 +234,9 @@ calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree5"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
+
 [node name="tree8" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -39.21202, 5.280403, 62.669746)
 skeleton = NodePath("../../..")
@@ -216,6 +247,9 @@ visible = false
 calculate_tangents = false
 use_collision = true
 size = Vector3(0.7, 4, 0.7)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Deco/Trees/tree8"]
+aabb = AABB(-1, -7, -1, 2, 14, 2)
 
 [node name="tree6" parent="World/Terrain/Deco/Trees" instance=ExtResource("11_ya4ey")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -44.971474, 4.4391174, -44.27707)
@@ -258,21 +292,6 @@ multimesh = SubResource("MultiMesh_0ld40")
 
 [node name="Clouds" type="Node" parent="World/Terrain/Deco"]
 
-[node name="cloud1" parent="World/Terrain/Deco/Clouds" instance=ExtResource("5_muem4")]
-transform = Transform3D(1.2622957, 0, -0.31082058, 0, 1.3, 0, 0.31082058, 0, 1.2622957, 204.61116, 57.743225, -174.10922)
-
-[node name="cloud2" parent="World/Terrain/Deco/Clouds" instance=ExtResource("6_dp3eg")]
-transform = Transform3D(1.5244819, 0, 0.8072057, 0, 1.7250003, 0, -0.8072057, 0, 1.5244819, 233.5007, 59.440895, -161.988)
-
-[node name="cloud5" parent="World/Terrain/Deco/Clouds" instance=ExtResource("6_dp3eg")]
-transform = Transform3D(0.6161044, 0, 1.6112235, 0, 1.7250003, 0, -1.6112235, 0, 0.6161044, 207.5599, 47.80735, -194.01544)
-
-[node name="cloud3" parent="World/Terrain/Deco/Clouds" instance=ExtResource("7_0ld40")]
-transform = Transform3D(-0.37552878, 0, 0.92681074, 0, 1, 0, -0.92681074, 0, -0.37552878, 237.14862, 47.624443, -179.13579)
-
-[node name="cloud4" parent="World/Terrain/Deco/Clouds" instance=ExtResource("7_0ld40")]
-transform = Transform3D(0.7179684, 0, -0.6960757, 0, 1, 0, 0.6960757, 0, 0.7179684, 217.52057, 61.297153, -174.40321)
-
 [node name="begin_text" type="MeshInstance3D" parent="World/Terrain"]
 transform = Transform3D(0.7942131, 0, -0.6076397, 0, 1, 0, 0.6076397, 0, 0.7942131, 199.27258, 36.88302, -164.63826)
 mesh = SubResource("TextMesh_jkv2x")
@@ -290,53 +309,64 @@ skeleton = NodePath("")
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 aabb = AABB(-0.4318269, -0.26110703, -0.20208636, 0.8636538, 0.52221406, 0.40417272)
 
-[node name="bg" parent="World/Terrain" instance=ExtResource("14_a8y0u")]
-transform = Transform3D(-1.3113416e-06, 0, -30, 0, 30, 0, 30, 0, -1.3113416e-06, 207.45424, 29.755333, -170.68283)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain/bg"]
-transform = Transform3D(0.79005754, 0, -0.61302996, 0, 0.99999857, 0, 0.61302996, 0, 0.79005754, 0.16983604, 0.13824743, 0.29986)
-size = Vector3(0.09146118, 0.10070801, 0.4468689)
-material = SubResource("StandardMaterial3D_jbj1t")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="World/Terrain/bg"]
-transform = Transform3D(0.79005754, 0, -0.61302996, 0, 0.99999857, 0, 0.61302996, 0, 0.79005754, 0.482347, 0.084249675, 0.25268507)
-size = Vector3(0.07095337, 0.10598755, 0.4468689)
-material = SubResource("StandardMaterial3D_muem4")
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/bg"]
-enable_mode = 1
-
 [node name="terrain" parent="World/Terrain" instance=ExtResource("10_dp3eg")]
 transform = Transform3D(-3.934025e-07, 0, 9, 0, 9, 0, -9, 0, -3.934025e-07, 0, 0, 0)
 
 [node name="Icebergs" type="Node" parent="World/Terrain"]
 
 [node name="Iceberg" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
-transform = Transform3D(0.4777611, 0.7576001, 0.25037256, -0.7855747, 0.4977181, -0.0070066615, -0.13970236, -0.2078912, 0.8956364, -76.541016, 1.1444092e-05, -85.246254)
+transform = Transform3D(0.5236025, 0.73043317, 0.23918176, -0.76797897, 0.4856066, 0.19822793, 0.030800011, -0.3091174, 0.87658316, -78.39212, 3.686592, -86.88055)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Iceberg2" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(0.665, 0, 0, 0, 0.665, 0, 0, 0, 0.665, -75.10541, -5.6346436, 108.71114)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg2"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
+
 [node name="Iceberg5" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, 98.32635, -5.634651, 99.10103)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg5"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Iceberg6" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(0.0023393738, -0.5034507, 0.03945712, 0.5049894, 0.0021555915, -0.0024361606, 0.0022602642, 0.039467596, 0.5034503, 22.755316, -5.634636, 118.13055)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg6"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
+
 [node name="Iceberg7" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(-0.014635906, 0.51878333, -1.170064, 1.1284771, 0.5573578, 0.23300576, 0.6039248, -1.0288907, -0.46374416, 117.60361, -5.634651, 83.971596)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg7"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Iceberg8" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(-0.078850366, -0.07196087, -1.2774446, 1.2703767, -0.5516496, -0.07650557, -0.13537203, -5.134952, 0.026121017, 202.76411, -5.634651, 9.01083)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg8"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
+
 [node name="Iceberg9" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
-transform = Transform3D(-0.13537203, -5.1349525, 0.026121078, 1.2703767, -0.5516495, -0.07650557, 0.07885039, 0.07196108, 1.2774447, 62.453293, -5.634651, -195.96628)
+transform = Transform3D(-0.20726773, -4.841471, 0.025285618, 1.9450701, -0.5201207, -0.07405861, 0.120727606, 0.06784824, 1.2365867, 62.453293, -5.634651, -195.96628)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg9"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Iceberg3" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(-0.22587882, 0, -0.46837884, 0, 0.52, 0, 0.46837884, 0, -0.22587882, -82.331276, -5.6346436, 95.495)
 
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg3"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
+
 [node name="Iceberg4" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
 transform = Transform3D(-0.024810156, 0.5168537, -0.051445957, 0.22451213, 0.05711594, 0.4655449, 0.46837884, 0, -0.22587882, -64.33872, -5.6346436, 121.88659)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg4"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Cameras" type="Node" parent="World"]
 
@@ -551,17 +581,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("CapsuleMesh_trceg")
 
 [node name="platform4" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.320343, 7.7613297, -52.73331)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.48766, 4.681939, -56.250603)
 use_collision = true
-size = Vector3(5, 1, 5)
+size = Vector3(5, 1.5644531, 5)
 material = ExtResource("2_sugp2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Projets/platform4"]
-transform = Transform3D(0.49999997, -0.70710677, 0.49999997, 0.49999994, 0.70710677, 0.5, -0.7071068, -3.090862e-08, 0.7071067, 0, 4, 0)
+transform = Transform3D(0.49999997, -0.70710677, 0.49999997, 0.49999994, 0.70710677, 0.5, -0.7071068, -3.090862e-08, 0.7071067, 0, 3.7177734, 0)
 mesh = SubResource("BoxMesh_a8y0u")
 
 [node name="platform5" type="CSGBox3D" parent="Projets"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.813738, 7.7613297, -65.32211)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.813738, 6.3959484, -65.32211)
 use_collision = true
 size = Vector3(5, 1, 5)
 material = ExtResource("2_sugp2")
@@ -580,78 +610,10 @@ material = ExtResource("2_sugp2")
 transform = Transform3D(-0.7179031, 0.50326294, -0.4809798, -0.5535188, -0.831672, -0.044028454, -0.42217538, 0.23462318, 0.8756255, 0, 3, 0)
 mesh = SubResource("CylinderMesh_jbj1t")
 
-[node name="Competences" type="Node" parent="."]
-
-[node name="platform1" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -90.54469, 0.2041359, -3.0402489)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform1"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
-[node name="platform2" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -82.54469, 0.2041359, -3.0402489)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform2"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
-[node name="platform3" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -74.54469, 0.2041359, -3.0402489)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform3"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
-[node name="platform4" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 11.791597)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform4"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
-[node name="platform5" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 19.791597)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform5"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
-[node name="platform6" type="CSGBox3D" parent="Competences"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.059574, 0.2041359, 27.791597)
-use_collision = true
-size = Vector3(5, 1, 5)
-material = ExtResource("3_jyhfs")
-
-[node name="Label3D" type="Label3D" parent="Competences/platform6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2, 0)
-pixel_size = 0.05
-text = "TEXT"
-
 [node name="Contacts" type="Node" parent="."]
 
 [node name="platform1" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 73.88657)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -49.385143, 7.1390963, 16.780266)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -662,7 +624,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform2" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 81.88657)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -43.728287, 6.614562, 22.43712)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -673,7 +635,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform3" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 89.88657)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -38.071434, 6.2936726, 28.093973)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
@@ -684,7 +646,7 @@ pixel_size = 0.05
 text = "TEXT"
 
 [node name="platform4" type="CSGBox3D" parent="Contacts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5970707, 6.983591, 97.88657)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -32.41458, 6.073146, 33.75083)
 use_collision = true
 size = Vector3(3, 1, 3)
 material = ExtResource("5_tbgi4")
