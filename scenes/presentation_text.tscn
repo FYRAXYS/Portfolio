@@ -54,3 +54,5 @@ vertical_alignment = 1
 transform = Transform3D(15.872002, 0, 0, 0, 19.044003, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("QuadMesh_bflse")
 surface_material_override/0 = SubResource("StandardMaterial3D_ysla1")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]

@@ -79,7 +79,7 @@ text = "[br]
 	[table=2]{
 		[cell][img]ressources/images/group.png[/img][/cell][cell][font_size={35}]  6 personnes[/font_size][/cell]
 		[cell][img]ressources/images/clock.png[/img][/cell][cell][font_size={35}]  Octobre 2025 / Janvier 2026[/font_size][/cell]
-		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  HTML, Bootstrap, Symfony, Twig[/font_size][/cell]
+		[cell][img]ressources/images/code.png[/img][/cell][cell][font_size={35}]  HTML, CSS, Symfony, Twig, Docker, PostgreSQL[/font_size][/cell]
 	}[/table]
 [/center]
 
@@ -125,8 +125,29 @@ En parallèle, nous avons commencé le design des maquettes de notre application
 Etape 3 : Développement
 [/font_size]
 
-[p]Enfin, la dernière étape de notre projet concerne le développement de l'application, une fois que tout les composants techniques et graphiques ont été déterminés. Nous avons choisi un modèle d'architecture MVC (Modèle - Vue - Contrôleur) pour notre application, chaque page étant représenté par une vue.
-Pour implémenter ce système, nous avons utilisé Java, avec JavaFX pour créer les différents élements des pages. Pour pouvoir travailler plus efficacement, nous avons également utilisé un répertoire Gitlab.[/p]
+[p]
+Enfin, la dernière étape de notre projet concerne le développement de l'application, une fois que tout les composants techniques et graphiques ont été déterminés. Nous avons profité de l'offre étudiante pour récupérer des licences de PHPStorm, un IDE adapté au framework Symfony. Celui-ci nous permet entre autre d'utiliser [i]Code With Me[/i], un environnement de développement partagé en temps réel.
+[/p]
+
+[p]
+Nous avions 3 semaines pour développer notre application, nous nous sommes donc organisés de la façon suivante :
+
+Lors de la première semaine, nous avons listé chaque tâche à effectuer. Pour chacune d'entre elle, nous avons déterminé sa difficulté, le temps nécéssaire pour la compléter et les ressources qu'elle allait mobiliser. Puis, nous nous sommes répartis le travail et avons commencé à développer les différentes fonctionnalités.
+
+Pour ma part, je me suis concentré sur le planning partagé de notre application, un onglet montrant les différentes tâches de la personne âgée et des intervenants externes qui lui sont liés. L'objectif était de compléter la majorité de cette partie d'ici la fin de la semaine, afin d'avoir un prototype pouvant être montré aux enseignants et à nos testeurs plutôt que de simples maquettes.
+[/p]
+
+[center]
+[img]ressources/images/projet3-1.png[/img]
+[/center]
+
+[p]
+Lors de la deuxième semaine, nous avons continué à développer les différentes fonctionnalités de notre application. J'ai implémenté le système de login et de création de compte pour l'application web. En parallèle, j'ai également mené des tests utilisateurs avec des soignants à domicile. Nous avons utilisé les méthodes du [i]Think Aloud[/i] et du questionnaire [i]System Usability Scale (SUS)[/i] et nous nous sommes basés sur les critères de Bastien et Scapin. Les retours de nos utilisateurs étaient plutôt positifs. Cependant, il nous ont aussi donné des pistes d'amélioration pour l'application au regard de leur expérience dans l'aide à la personne âgée.
+[/p]
+
+[p]
+Dans la troisième et dernière semaine, nous avons apporté les dernières finitions à notre application.
+[/p]
 
 [/font_size]"
 selection_enabled = true

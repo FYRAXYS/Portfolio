@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var JSON_PATH = "res://ressources/text/json/" + self.name + ".json"
+@onready var JSON_PATH:String = "res://ressources/text/json/" + self.name + ".json"
 @onready var presentation_text:RichTextLabel = %Text
 @onready var subviewport:SubViewport = $SubViewport
 @onready var quad:MeshInstance3D = $Quad
@@ -36,12 +36,12 @@ func read_json(file_path):
 		push_error("Fichier JSON non trouvé: " + file_path)
 		return
 
-	var file = FileAccess.open(file_path, FileAccess.READ)
-	var json = file.get_as_text()
+	var file:FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	var json:String = file.get_as_text()
 	file.close()
 
-	var json_object = JSON.new()
-	var error = json_object.parse(json)
+	var json_object:JSON = JSON.new()
+	var error:Error = json_object.parse(json)
 	if error != OK:
 		push_error("Erreur de parsing JSON: " + json_object.get_error_message())
 		return
@@ -50,5 +50,5 @@ func read_json(file_path):
 	presentation_text.text = ""
 	
 	for partie in data:
-		var text_content = str(data[partie]) # S'assurer que c'est une chaîne
+		var text_content:String = str(data[partie]) # S'assurer que c'est une chaîne
 		presentation_text.append_text(text_content)

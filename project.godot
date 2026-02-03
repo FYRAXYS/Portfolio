@@ -26,6 +26,11 @@ folder_colors={
 "res://web/": "blue"
 }
 
+[filesystem]
+
+import/fbx2gltf/enabled.web=true
+import/blender/enabled.web=true
+
 [input]
 
 move_left={

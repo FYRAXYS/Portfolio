@@ -1,7 +1,7 @@
 extends Node3D
 @onready var PressText:Label3D =$Bouton.get_child(0)
 @onready var PopUpScenePath = $"../../PopUps/popup_container"
-@onready var popup_number = NodePath(PressText.name)
+@onready var popup_number: NodePath = NodePath(PressText.name)
 
 var is_player_inside_area:bool
 signal inside_area

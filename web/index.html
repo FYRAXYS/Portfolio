@@ -1,117 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-		<title>GodotPortfolio</title>
-		<style>
-html, body, #canvas {
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>FYRAXYS | PORTFOLIO</title>
+		
+    <style>
+        html, body, #canvas {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
 
-body {
-	color: white;
-	background-color: black;
-	overflow: hidden;
-	touch-action: none;
-}
+        body {
+            color: white;
+            background-color: black;
+            overflow: hidden;
+            touch-action: none;
+        }
 
-#canvas {
-	display: block;
-}
+        #canvas {
+            display: block;
+        }
 
-#canvas:focus {
-	outline: none;
-}
+        #canvas:focus {
+            outline: none;
+        }
 
-#status, #status-splash, #status-progress {
-	position: absolute;
-	left: 0;
-	right: 0;
-}
+        #status, #status-splash, #status-progress {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
 
-#status, #status-splash {
-	top: 0;
-	bottom: 0;
-}
+        #status, #status-splash {
+            top: 0;
+            bottom: 0;
+        }
 
-#status {
-	background-color: #242424;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	visibility: hidden;
-}
+        #status {
+            background-color: #0c0e1e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
 
-#status-splash {
-	max-height: 100%;
-	max-width: 100%;
-	margin: auto;
-}
+        #status-splash {
+            max-height: 100%;
+            max-width: 100%;
+            margin: auto;
+        }
 
-#status-splash.show-image--false {
-	display: none;
-}
+        #status-splash.show-image--false {
+            display: none;
+        }
 
-#status-splash.fullsize--true {
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-}
+        #status-splash.fullsize--true {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
 
-#status-splash.use-filter--false {
-	image-rendering: pixelated;
-}
+        #status-splash.use-filter--false {
+            image-rendering: pixelated;
+        }
 
-#status-progress, #status-notice {
-	display: none;
-}
+        #status-progress, #status-notice {
+            display: none;
+        }
 
-#status-progress {
-	bottom: 10%;
-	width: 50%;
-	margin: 0 auto;
-}
+        #status-progress {
+            display: none;
+            position: absolute;
+            bottom: 25%;
+            width: 50%;
+            height: 10px;
+            margin: 0 auto;
+            left: 0; 
+            right: 0;
+            
+            -webkit-appearance: none;
+            appearance: none;
+            border: none;
+            
+            background-color: #0c0e1e;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #fc5b11;
 
-#status-notice {
-	background-color: #5b3943;
-	border-radius: 0.5rem;
-	border: 1px solid #9b3943;
-	color: #e0e0e0;
-	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-	line-height: 1.3;
-	margin: 0 2rem;
-	overflow: hidden;
-	padding: 1rem;
-	text-align: center;
-	z-index: 1;
-}
-		</style>
-		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
-<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+            overflow: hidden;
+        }
+
+        /* Chrome, Safari, Edge */
+        #status-progress::-webkit-progress-value {
+            background-color: #fc6d25;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+        }
+
+        /* Firefox */
+        #status-progress::-moz-progress-bar {
+            background-color: #fc6d25; 
+            border-radius: 10px;
+        }
+        
+        #custom-loading-text {
+            position: absolute;
+            top: 40%; 
+            width: 100%;
+            text-align: center;
+            font-family: 'Noto Sans', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            z-index: 100;
+            text-shadow: 0 2px 4px black;
+            pointer-events: none; 
+        }
+
+        #custom-bottom-text {
+            position: absolute;
+            bottom: 10px; 
+            width: 100%;
+            text-align: center;
+            font-family: 'Noto Sans', Arial, sans-serif;
+            font-size: 1rem;
+            color: #ffffff;
+            z-index: 100;
+            text-shadow: 0 2px 4px black;
+            pointer-events: all;
+        }
+
+        #custom-bottom-text a {
+            color: #fc6d25;
+        }
+
+        #status-notice {
+            background-color: #5b3943;
+            border-radius: 0.5rem;
+            border: 1px solid #9b3943;
+            color: #e0e0e0;
+            font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+            line-height: 1.3;
+            margin: 0 2rem;
+            overflow: hidden;
+            padding: 1rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+    </style>
+
 
 	</head>
+
 	<body>
+
+        <div id="custom-loading-text">
+            <h1>Chargement du Portfolio...</h1>
+            <p>Veuillez patienter quelques instants</p>
+        </div>
+
 		<canvas id="canvas">
-			Your browser does not support the canvas tag.
+			Oups ! Il semblerait que votre navigateur ne supporte pas le système de canvas. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
 		</canvas>
 
 		<noscript>
-			Your browser does not support JavaScript.
+			Oups ! Il semblerait que votre navigateur ne supporte pas JavaScript. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
+        <div id="custom-bottom-text">
+            <p>Mauvaise connexion ? Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a></p>
+            <p>FYRAXYS &copy; 2026</p>
+        </div>
+
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":19990960,"index.wasm":1589584},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":13249744,"index.wasm":1589584},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -129,6 +199,13 @@ const engine = new Engine(GODOT_CONFIG);
 		}
 		if (mode === 'hidden') {
 			statusOverlay.remove();
+
+            const customText = document.getElementById('custom-loading-text');
+            if (customText) customText.style.display = 'none';
+
+            const customBottomText = document.getElementById('custom-bottom-text');
+            if (customBottomText) customBottomText.style.display = 'none';
+
 			initializing = false;
 			return;
 		}
@@ -217,4 +294,5 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
+
 

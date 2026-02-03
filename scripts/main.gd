@@ -42,13 +42,13 @@ func _process(delta: float) -> void:
 	# 2. Gestion de la TRANSITION (s'exécute à chaque frame si une cible existe)
 	# Ce bloc doit être en dehors du "if Input..."
 	if is_instance_valid(target_camera):
-		var target_transform = target_camera.global_transform
+		var target_transform:Transform3D = target_camera.global_transform
 		TransitionCamera.global_transform = TransitionCamera.global_transform.interpolate_with(target_transform, TRANSITION_SPEED * delta)
 		
-		var target_fov = target_camera.fov
+		var target_fov:float = target_camera.fov
 		TransitionCamera.fov = lerp(TransitionCamera.fov, target_fov, TRANSITION_SPEED * delta)
 		
-		var distance_to_target = TransitionCamera.global_position.distance_to(target_transform.origin)
+		var distance_to_target:float = TransitionCamera.global_position.distance_to(target_transform.origin)
 		
 		# Fin de la transition
 		if distance_to_target < 0.01:
