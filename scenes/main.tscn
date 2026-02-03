@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b7yobuvulygou"]
+[gd_scene load_steps=34 format=3 uid="uid://b7yobuvulygou"]
 
 [ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cvbsdwejew3m3" path="res://materials/objets/terrain/Iceberg.glb" id="10_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bvlpf5vkogl78" path="res://materials/objets/terrain/terrain-opti2.glb" id="10_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://c55uchs47t0p0" path="res://scenes/meshs/tree.tscn" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cudyafxbwxxnd" path="res://materials/objets/terrain/bg.blend" id="15_jkv2x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.32830942, 0.63534105, 0.89322805, 1)
@@ -293,7 +294,7 @@ multimesh = SubResource("MultiMesh_0ld40")
 [node name="Clouds" type="Node" parent="World/Terrain/Deco"]
 
 [node name="begin_text" type="MeshInstance3D" parent="World/Terrain"]
-transform = Transform3D(0.7942131, 0, -0.6076397, 0, 1, 0, 0.6076397, 0, 0.7942131, 199.27258, 36.88302, -164.63826)
+transform = Transform3D(2.2794478, 0, -1.9504148, 0, 3, 0, 1.9504148, 0, 2.2794478, 403.6528, 26.734053, -355.7829)
 mesh = SubResource("TextMesh_jkv2x")
 skeleton = NodePath("")
 
@@ -301,7 +302,7 @@ skeleton = NodePath("")
 aabb = AABB(-4, -4, -1, 8, 8, 2)
 
 [node name="begin_text_sub" type="MeshInstance3D" parent="World/Terrain"]
-transform = Transform3D(11.421956, 0, -8.785616, 0, 14.41, 0, 8.785616, 0, 11.421956, 200.01813, 34.95646, -156.13063)
+transform = Transform3D(24.258936, 0, -25.22903, 0, 35, 0, 25.22903, 0, 24.258936, 409.0638, 18.001001, -342.09494)
 mesh = SubResource("TextMesh_jbj1t")
 skeleton = NodePath("")
 
@@ -311,6 +312,11 @@ aabb = AABB(-0.4318269, -0.26110703, -0.20208636, 0.8636538, 0.52221406, 0.40417
 
 [node name="terrain" parent="World/Terrain" instance=ExtResource("10_dp3eg")]
 transform = Transform3D(-3.934025e-07, 0, 9, 0, 9, 0, -9, 0, -3.934025e-07, 0, 0, 0)
+
+[node name="bg" parent="World/Terrain" instance=ExtResource("15_jkv2x")]
+transform = Transform3D(-1.3113415e-06, 0, -29.999998, 0, 29.999998, 0, 29.999998, 0, -1.3113415e-06, 354.11124, 0.46951294, -286.81204)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/bg"]
 
 [node name="Icebergs" type="Node" parent="World/Terrain"]
 
@@ -330,6 +336,12 @@ aabb = AABB(-28, -33, -28, 56, 66, 56)
 transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, 98.32635, -5.634651, 99.10103)
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg5"]
+aabb = AABB(-28, -33, -28, 56, 66, 56)
+
+[node name="Iceberg10" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
+transform = Transform3D(-4.3583672e-08, 0.99707824, 0.8105924, -1.285, -5.616913e-08, 2.0558021e-15, 3.5432123e-08, -0.8105924, 0.99707824, 210.88606, -5.634651, -173.3667)
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="World/Terrain/Icebergs/Iceberg10"]
 aabb = AABB(-28, -33, -28, 56, 66, 56)
 
 [node name="Iceberg6" parent="World/Terrain/Icebergs" instance=ExtResource("10_0ld40")]
@@ -374,14 +386,14 @@ aabb = AABB(-28, -33, -28, 56, 66, 56)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.11991882, 134.62991, 0)
 
 [node name="PresentationCamera" type="Camera3D" parent="World/Cameras"]
-transform = Transform3D(0.70710665, 0.6123725, -0.35355356, 9.3996995e-08, 0.50000006, 0.8660254, 0.70710695, -0.61237234, 0.35355332, 43.475075, 29.968773, 48.952896)
+transform = Transform3D(0.70710665, 0.6123725, -0.35355356, 9.3996995e-08, 0.50000006, 0.8660254, 0.70710695, -0.61237234, 0.35355332, 39.475075, 32.968773, 52.952896)
 
 [node name="PlayerCamera" type="Camera3D" parent="World/Cameras"]
 transform = Transform3D(0.70710665, 0.6123726, -0.3535534, -7.1054274e-15, 0.49999997, 0.86602545, 0.7071069, -0.61237234, 0.3535533, -51.92627, 47.62454, 33.814095)
 script = ExtResource("3_tipki")
 
 [node name="BeginCamera" type="Camera3D" parent="World/Cameras"]
-transform = Transform3D(0.7538731, -0.01146658, -0.6569201, 0, 0.9998477, -0.017452406, 0.6570201, 0.013156898, 0.7537583, 192.60217, 36.218964, -148.5832)
+transform = Transform3D(0.7538731, -0.0114665795, -0.6569201, 0, 0.9998477, -0.017452406, 0.6570201, 0.013156899, 0.7537583, 371.03464, 18.636826, -305.55426)
 
 [node name="Borders" type="Node" parent="World"]
 
