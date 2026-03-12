@@ -6,6 +6,30 @@
     <title>FYRAXYS | PORTFOLIO</title>
 		
     <style>
+
+        #custom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 100; 
+        background-color: #ffffff; 
+        
+        opacity: 1;
+        transition: opacity 1.0s ease-out; 
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        }
+
+        #custom.fade-out-html {
+        opacity: 0;
+        pointer-events: none;
+        }
+
         html, body, #canvas {
             margin: 0;
             padding: 0;
@@ -14,7 +38,7 @@
 
         body {
             color: white;
-            background-color: black;
+            background-color: white;
             overflow: hidden;
             touch-action: none;
         }
@@ -39,7 +63,7 @@
         }
 
         #status {
-            background-color: #0c0e1e;
+            background-color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -85,23 +109,23 @@
             appearance: none;
             border: none;
             
-            background-color: #0c0e1e;
+            background-color: white;
             border-radius: 15px;
-            box-shadow: 0 0 10px #fc5b11;
+            box-shadow: 0 0 10px #378334;
 
             overflow: hidden;
         }
 
         /* Chrome, Safari, Edge */
         #status-progress::-webkit-progress-value {
-            background-color: #fc6d25;
+            background-color: #378334;
             border-radius: 15px;
             transition: width 0.5s ease;
         }
 
         /* Firefox */
         #status-progress::-moz-progress-bar {
-            background-color: #fc6d25; 
+            background-color: #378334; 
             border-radius: 10px;
         }
         
@@ -112,7 +136,7 @@
             text-align: center;
             font-family: 'Noto Sans', Arial, sans-serif;
             font-size: 1.2rem;
-            color: #ffffff;
+            color: black;
             z-index: 100;
             text-shadow: 0 2px 4px black;
             pointer-events: none; 
@@ -125,14 +149,14 @@
             text-align: center;
             font-family: 'Noto Sans', Arial, sans-serif;
             font-size: 1rem;
-            color: #ffffff;
+            color: black;
             z-index: 100;
             text-shadow: 0 2px 4px black;
             pointer-events: all;
         }
 
         #custom-bottom-text a {
-            color: #fc6d25;
+            color: rgb(137, 252, 37);
         }
 
         #status-notice {
@@ -156,28 +180,30 @@
 
 	<body>
 
-        <div id="custom-loading-text">
-            <h1>Chargement du Portfolio...</h1>
-            <p>Veuillez patienter quelques instants</p>
+        <div id="custom">
+            <div id="custom-loading-text">
+                <h1>Chargement du Portfolio...</h1>
+                <p>Veuillez patienter quelques instants</p>
+            </div>
+
+            <div id="status">
+                <progress id="status-progress"></progress>
+                <div id="status-notice"></div>
+            </div>
+
+            <div id="custom-bottom-text">
+                <p>Mauvaise connexion ? Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a></p>
+                <p>FYRAXYS &copy; 2026</p>
+            </div>
         </div>
 
-		<canvas id="canvas">
+        <canvas id="canvas">
 			Oups ! Il semblerait que votre navigateur ne supporte pas le système de canvas. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
 		</canvas>
 
 		<noscript>
 			Oups ! Il semblerait que votre navigateur ne supporte pas JavaScript. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
 		</noscript>
-
-		<div id="status">
-			<progress id="status-progress"></progress>
-			<div id="status-notice"></div>
-		</div>
-
-        <div id="custom-bottom-text">
-            <p>Mauvaise connexion ? Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a></p>
-            <p>FYRAXYS &copy; 2026</p>
-        </div>
 
 		<script src="index.js"></script>
 		<script>
@@ -197,18 +223,24 @@ const engine = new Engine(GODOT_CONFIG);
 		if (statusMode === mode || !initializing) {
 			return;
 		}
-		if (mode === 'hidden') {
-			statusOverlay.remove();
-
-            const customText = document.getElementById('custom-loading-text');
-            if (customText) customText.style.display = 'none';
-
-            const customBottomText = document.getElementById('custom-bottom-text');
-            if (customBottomText) customBottomText.style.display = 'none';
-
-			initializing = false;
-			return;
-		}
+        if (mode === 'hidden') {
+            const statusElement = document.getElementById('custom'); 
+            
+            if (statusElement) {
+                // LE SECRET : On force le navigateur à recalculer l'affichage
+                // Cela empêche le navigateur de "sauter" l'animation
+                void statusElement.offsetWidth; 
+                
+                // On déclenche l'animation
+                statusElement.classList.add('fade-out-html');
+                
+                // On supprime l'élément pile quand l'animation se termine (1.5s)
+                setTimeout(() => {
+                    statusElement.style.display = 'none';
+                }, 1000);
+            }
+            return;
+        }
 		statusOverlay.style.visibility = 'visible';
 		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
 		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
@@ -294,5 +326,7 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
+
+
 
 

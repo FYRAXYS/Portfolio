@@ -7,6 +7,8 @@ const TRANSITION_SPEED: float = 5.0
 @onready var PresentationCamera: Camera3D = $World/Cameras/PresentationCamera
 @onready var BeginCamera: Camera3D = $World/Cameras/BeginCamera
 
+@onready var transition_rect = $TransitionLayer/ColorRect
+
 var target_camera: Camera3D
 var selected_camera: Camera3D
 # Variable pour empêcher de relancer la transition en boucle
@@ -14,17 +16,32 @@ var game_started: bool = false
 
 func _ready() -> void:
 	await get_tree().physics_frame
+
+	transition_rect.show()
+	transition_rect.modulate.a = 1.0
+
+	PlayerCamera.make_current()
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	PresentationCamera.make_current()
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	if OS.has_feature("web"):
+		await get_tree().create_timer(1.0).timeout
 	
-	# État initial : on est sur la BeginCamera
 	selected_camera = BeginCamera
-	# target_camera doit être null au début pour ne pas déclencher de mouvement
 	target_camera = null 
 	
-	# IMPORTANT : La caméra de transition doit se caler sur la caméra de DÉBUT
 	TransitionCamera.global_transform = BeginCamera.global_transform
 	TransitionCamera.fov = BeginCamera.fov
 	
 	BeginCamera.make_current()
+
+	var tween = create_tween()
+	tween.tween_property(transition_rect, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(transition_rect.queue_free)
 
 
 func _process(delta: float) -> void:
