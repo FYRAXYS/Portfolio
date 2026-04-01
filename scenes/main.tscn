@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cudyafxbwxxnd" path="res://materials/objets/terrain/bg.blend" id="15_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://noe6flrn8bik" path="res://materials/objets/Snowman.glb" id="19_0ld40"]
 [ext_resource type="PackedScene" uid="uid://ctxdmvry3ek1v" path="res://materials/objets/Igloo.glb" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://cjd6jbvyrcmxw" path="res://scenes/popup/debug.tscn" id="21_r31d5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_top_color = Color(0.32830942, 0.63534105, 0.89322805, 1)
@@ -615,6 +616,8 @@ size = Vector3(1, 60, 241.295)
 [node name="PopUps" type="Node" parent="." unique_id=650246651]
 
 [node name="popup_container" parent="PopUps" unique_id=1083426496 instance=ExtResource("4_choun")]
+
+[node name="DebugUI" parent="PopUps" instance=ExtResource("21_r31d5")]
 
 [node name="Presentation" type="Node" parent="." unique_id=1347444776]
 

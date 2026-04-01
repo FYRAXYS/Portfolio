@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cjd6jbvyrcmxw"]
+
+[ext_resource type="Script" uid="uid://dbqdfbt30mkxy" path="res://scripts/debug.gd" id="1_ydk7x"]
+
+[node name="Control" type="Control" unique_id=1807446731]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ydk7x")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=717747516]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.0
+offset_right = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1813545630]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Rect" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=1255600070]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0.44705883)
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Rect" unique_id=608537870]
+layout_mode = 1
+offset_right = 880.0
+offset_bottom = 23.0
+text = "INTERFACE DE DEBUG"
+
+[node name="Options" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Rect" unique_id=149900101]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="ShowPerf" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=183114880]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Afficher FPS + Frame Time"
+
+[node name="ShowPosition" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=210009923]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Afficher position"
+
+[node name="ShowVelocity" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=1523771009]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Afficher velocite"
+
+[node name="ShowState" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=710640733]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Afficher etat joueur"
+
+[node name="PauseGame" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=802259332]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pause le jeu quand debug est ouvert"
+
+[node name="ActionOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Rect/Options" unique_id=1246300210]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SpeedX2" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options/ActionOptions" unique_id=207640135]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action: vitesse x2"
+
+[node name="NoGravity" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options/ActionOptions" unique_id=1847783776]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action: no gravity"
+
+[node name="Noclip" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options/ActionOptions" unique_id=177235566]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action: noclip"
+
+[node name="SpaceVelocity" type="CheckBox" parent="MarginContainer/VBoxContainer/Rect/Options/ActionOptions" unique_id=873552004]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Action: velocite spatiale"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=327392823]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130.085, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "EXIT"
