@@ -73,7 +73,7 @@ func _find_player() -> CharacterBody3D:
 
 
 func _build_debug_text() -> String:
-	var fps: int = Engine.get_frames_per_second()
+	var fps: float = Engine.get_frames_per_second()
 	var frame_ms: float = 1000.0 / max(float(fps), 1.0)
 
 	var lines: PackedStringArray = [

@@ -617,7 +617,7 @@ size = Vector3(1, 60, 241.295)
 
 [node name="popup_container" parent="PopUps" unique_id=1083426496 instance=ExtResource("4_choun")]
 
-[node name="DebugUI" parent="PopUps" instance=ExtResource("21_r31d5")]
+[node name="DebugUI" parent="PopUps" unique_id=1790015408 instance=ExtResource("21_r31d5")]
 
 [node name="Presentation" type="Node" parent="." unique_id=1347444776]
 

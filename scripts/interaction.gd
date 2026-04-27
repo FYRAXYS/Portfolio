@@ -18,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 		print("sucess")
 		PopUpScenePath.get_node(popup_number).show()
 		$"../../PopUps/popup_container/InteractText".hide()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 
 
