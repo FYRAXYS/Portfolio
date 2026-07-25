@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://c4jq7o4lkxm2k"]
+
+[ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_10v3s"]
+[ext_resource type="Script" uid="uid://ch13dxvdxg4e0" path="res://scripts/clouds_drift.gd" id="1_a6664"]
+[ext_resource type="PackedScene" uid="uid://ou8py7b832mx" path="res://materials/objets/terrain/moutain_bg.glb" id="1_ns6u7"]
+[ext_resource type="PackedScene" uid="uid://cu0vvocnmv5q1" path="res://materials/objets/terrain/moutain_master.glb" id="1_tyffc"]
+[ext_resource type="PackedScene" uid="uid://dg4dtt3weov54" path="res://materials/objets/clouds/cloud1.blend" id="3_5t4e2"]
+[ext_resource type="PackedScene" uid="uid://7ybgyc5xeoig" path="res://materials/objets/clouds/cloud2.blend" id="4_oqwcg"]
+[ext_resource type="PackedScene" uid="uid://7sbh3jpyfrqn" path="res://materials/objets/clouds/cloud3.blend" id="5_a6664"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ns6u7"]
+rayleigh_color = Color(0.36513993, 0.7665061, 0.9999997, 1)
+mie_color = Color(0.34295997, 0.795164, 0.9209513, 1)
+ground_color = Color(0.039215688, 0.73333335, 0.9137255, 1)
+
+[sub_resource type="Sky" id="Sky_5t4e2"]
+sky_material = SubResource("PhysicalSkyMaterial_ns6u7")
+
+[sub_resource type="Environment" id="Environment_xvgsr"]
+background_mode = 2
+background_energy_multiplier = 1.1
+sky = SubResource("Sky_5t4e2")
+tonemap_mode = 4
+tonemap_white = 10.0
+tonemap_agx_white = 22.6
+tonemap_agx_contrast = 1.5
+fog_enabled = true
+fog_light_color = Color(0.05490196, 0.61960787, 0.96862745, 1)
+fog_sun_scatter = 0.3
+fog_density = 0.005
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oqwcg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns6u7"]
+albedo_color = Color(0.52446204, 0.31564817, 0.018522734, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1663185536]
+script = ExtResource("1_10v3s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=625911439]
+environment = SubResource("Environment_xvgsr")
+camera_attributes = SubResource("CameraAttributesPractical_oqwcg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=396928883]
+transform = Transform3D(-0.7979058, 0.26743737, -0.54020715, -0.5236197, 0.13644561, 0.8409549, 0.29861158, 0.9538656, 0.031164661, 0, 0, 0)
+light_intensity_lux = 30198.02
+light_temperature = 5500.0
+light_energy = 5.0
+shadow_enabled = true
+
+[node name="moutain_bg" parent="." unique_id=520481380 instance=ExtResource("1_ns6u7")]
+transform = Transform3D(0.6256987, 0, -0.780065, 0, 1, 0, 0.780065, 0, 0.6256987, 5.953287, -0.26278138, 2.172771)
+
+[node name="moutain_bg2" parent="." unique_id=177570080 instance=ExtResource("1_ns6u7")]
+transform = Transform3D(0.02228126, 0, 0.9997518, 0, 1, 0, -0.9997518, 0, 0.02228126, 3.4835505, -0.26278138, 4.226631)
+
+[node name="moutain_bg3" parent="." unique_id=1983442424 instance=ExtResource("1_ns6u7")]
+transform = Transform3D(0.023555584, 0, 2.0494313, 0, 1, 0, -0.9997226, 0, 0.048288956, -0.88766956, -0.26278138, 5.288237)
+
+[node name="moutain_master" parent="." unique_id=1246887703 instance=ExtResource("1_tyffc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002389431, 0, -0.00729084)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=326000917]
+transform = Transform3D(-0.093324095, 0, -0.99563587, 0, 1, 0, 0.99563587, 0, -0.093324095, -2.2062888, 0.69356656, -0.3219747)
+
+[node name="house" type="CSGBox3D" parent="." unique_id=1125634042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74787647, 0.15752912, -0.056608625)
+size = Vector3(0.07050781, 0.1, 0.121875)
+material = SubResource("StandardMaterial3D_ns6u7")
+
+[node name="Clouds" type="Node3D" parent="." unique_id=13401165]
+transform = Transform3D(0.11247786, 0, 0.99365413, 0, 1, 0, -0.99365413, 0, 0.11247786, -4.398063, 0, 24.110456)
+script = ExtResource("1_a6664")
+min_speed = 0.05
+max_speed = 0.35
+travel_distance = 55.0
+
+[node name="cloud1" parent="Clouds" unique_id=2021600741 instance=ExtResource("3_5t4e2")]
+transform = Transform3D(0.4733619, 0, -0.5156829, 0, 0.7000001, 0, 0.5156829, 0, 0.4733619, 9.142453, 5.878193, -3.318422)
+
+[node name="cloud5" parent="Clouds" unique_id=776312690 instance=ExtResource("3_5t4e2")]
+transform = Transform3D(0.4733619, 0, -0.5156829, 0, 0.7000001, 0, 0.5156829, 0, 0.4733619, 3.737358, 4.760419, 0.7858656)
+
+[node name="cloud2" parent="Clouds" unique_id=847291820 instance=ExtResource("4_oqwcg")]
+transform = Transform3D(-0.43523818, 0, -0.54824066, 0, 0.70000005, 0, 0.54824066, 0, -0.43523818, 11.039945, 5.959569, 0.39290833)
+
+[node name="cloud3" parent="Clouds" unique_id=697941810 instance=ExtResource("5_a6664")]
+transform = Transform3D(-0.55157006, 0, -0.4310111, 0, 0.7000001, 0, 0.4310111, 0, -0.55157006, 6.913766, 6.0969267, 2.357222)
+
+[node name="cloud4" parent="Clouds" unique_id=1277456926 instance=ExtResource("5_a6664")]
+transform = Transform3D(0.632441, 0, -0.3000312, 0, 0.7, 0, 0.3000312, 0, 0.632441, 5.2940044, 6.775656, -1.9996709)
+
+[node name="cloud6" parent="Clouds" unique_id=364602582 instance=ExtResource("4_oqwcg")]
+transform = Transform3D(-0.6812768, 0, 0.16081789, 0, 0.7, 0, -0.16081789, 0, -0.6812768, 1.4333229, 7.079793, -1.2025015)
+
+[node name="cloud7" parent="Clouds" unique_id=123772566 instance=ExtResource("5_a6664")]
+transform = Transform3D(-0.69976795, 0, -0.018022913, 0, 0.70000005, 0, 0.018022913, 0, -0.69976795, 4.897152, 4.5163956, 6.7954884)
+
+[node name="cloud8" parent="Clouds" unique_id=1613903379 instance=ExtResource("5_a6664")]
+transform = Transform3D(0.1685045, 0, 0.6794168, 0, 0.70000005, 0, -0.6794168, 0, 0.1685045, 10.270309, 6.1895356, 8.601568)
+
+[node name="cloud9" parent="Clouds" unique_id=1506929249 instance=ExtResource("5_a6664")]
+transform = Transform3D(0.16850452, 0, 0.67941684, 0, 0.70000005, 0, -0.67941684, 0, 0.16850452, -0.06352806, 6.1895356, 3.299205)
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1298195869]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="TransitionLayer" unique_id=1679918476]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

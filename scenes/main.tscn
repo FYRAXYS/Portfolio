@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b7yobuvulygou"]
 
 [ext_resource type="PackedScene" uid="uid://cgjoaxpm2gg8v" path="res://scenes/user.tscn" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_tefeu"]
 [ext_resource type="Material" uid="uid://vp4tyqx43sbb" path="res://materials/platform_presentation.tres" id="2_jyhfs"]
 [ext_resource type="Material" uid="uid://cumhb0u48rxdv" path="res://materials/platform_projets.tres" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bbjjbo37g65hi" path="res://scripts/player_camera.gd" id="3_tipki"]
@@ -99,7 +98,6 @@ height = 2.8
 [sub_resource type="CylinderMesh" id="CylinderMesh_jbj1t"]
 
 [node name="Portfolio" type="Node3D" unique_id=1538678083]
-script = ExtResource("1_tefeu")
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1395079020]
 layer = 100

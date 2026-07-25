@@ -4,31 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <title>FYRAXYS | PORTFOLIO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 		
     <style>
-
-        #custom {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 100; 
-        background-color: #ffffff; 
-        
-        opacity: 1;
-        transition: opacity 1.0s ease-out; 
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        }
-
-        #custom.fade-out-html {
-        opacity: 0;
-        pointer-events: none;
-        }
 
         html, body, #canvas {
             margin: 0;
@@ -38,7 +18,7 @@
 
         body {
             color: white;
-            background-color: white;
+            background-color: #0d1f0f;
             overflow: hidden;
             touch-action: none;
         }
@@ -51,281 +31,507 @@
             outline: none;
         }
 
-        #status, #status-splash, #status-progress {
+        /* ─── LOADING SCREEN ─────────────────────────────────────── */
+
+        #custom {
             position: absolute;
-            left: 0;
-            right: 0;
-        }
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 100;
+            overflow: hidden;
 
-        #status, #status-splash {
-            top: 0;
-            bottom: 0;
-        }
+            opacity: 1;
+            transition: opacity 1.2s ease-out;
 
-        #status {
-            background-color: white;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            visibility: hidden;
+            justify-content: center;
         }
 
-        #status-splash {
-            max-height: 100%;
-            max-width: 100%;
-            margin: auto;
+        #custom.fade-out-html {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        #status-splash.show-image--false {
-            display: none;
+        /* Sky gradient */
+        #sky {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                #e8f4f0 0%,
+                #c5dfd4 18%,
+                #9ec9b8 36%,
+                #6aaa8f 55%,
+                #3d7a5e 72%,
+                #1e4d35 88%,
+                #0d2919 100%
+            );
         }
 
-        #status-splash.fullsize--true {
-            height: 100%;
+        /* Parallax SVG layers */
+        .parallax-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            object-fit: contain;
+            height: 100%;
+            pointer-events: none;
         }
 
-        #status-splash.use-filter--false {
-            image-rendering: pixelated;
+        /* Mist layers */
+        .mist {
+            position: absolute;
+            left: -20%;
+            width: 140%;
+            height: 80px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: mistDrift 8s ease-in-out infinite;
+        }
+        .mist-1 { bottom: 38%; background: radial-gradient(ellipse, rgba(255,255,255,0.18) 0%, transparent 70%); animation-delay: 0s; animation-duration: 10s; }
+        .mist-2 { bottom: 28%; background: radial-gradient(ellipse, rgba(220,240,235,0.22) 0%, transparent 70%); animation-delay: 3s; animation-duration: 12s; height: 100px; }
+        .mist-3 { bottom: 20%; background: radial-gradient(ellipse, rgba(200,230,220,0.15) 0%, transparent 70%); animation-delay: 6s; animation-duration: 9s; }
+
+        @keyframes mistDrift {
+            0%   { opacity: 0; transform: translateX(0); }
+            20%  { opacity: 1; }
+            80%  { opacity: 0.8; }
+            100% { opacity: 0; transform: translateX(8%); }
         }
 
-        #status-progress, #status-notice {
-            display: none;
+        /* Subtle floating animation for layers */
+        @keyframes layerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-4px); }
+        }
+
+        /* Stars */
+        #stars {
+            position: absolute;
+            inset: 0;
+            opacity: 0.6;
+        }
+
+        /* Birds */
+        #birds {
+            position: absolute;
+            top: 14%;
+            right: 15%;
+            opacity: 0.7;
+            animation: birdsFloat 6s ease-in-out infinite;
+        }
+        @keyframes birdsFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50%       { transform: translate(-12px, -8px); }
+        }
+
+        /* Snow particles */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 50%;
+            animation: snowFall linear infinite;
+            pointer-events: none;
+        }
+        @keyframes snowFall {
+            0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(110vh) translateX(30px) rotate(360deg); opacity: 0; }
+        }
+
+        /* ─── UI OVERLAY ─────────────────────────────────────────── */
+
+        #ui-overlay {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        #logo-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            color: #e8f5ee;
+            text-shadow:
+                0 0 40px rgba(80, 200, 140, 0.5),
+                0 2px 6px rgba(0,0,0,0.6);
+            opacity: 0;
+            animation: titleReveal 1.6s ease-out 0.4s forwards;
+        }
+
+        #logo-sub {
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+            font-weight: 300;
+            letter-spacing: 0.6em;
+            color: rgba(200, 235, 215, 0.75);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: titleReveal 1.6s ease-out 0.9s forwards;
+        }
+
+        @keyframes titleReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Progress bar */
+        #progress-container {
+            width: clamp(160px, 30vw, 280px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: titleReveal 1.6s ease-out 1.3s forwards;
         }
 
         #status-progress {
-            display: none;
-            position: absolute;
-            bottom: 25%;
-            width: 50%;
-            height: 10px;
-            margin: 0 auto;
-            left: 0; 
-            right: 0;
-            
+            width: 100%;
+            height: 2px;
             -webkit-appearance: none;
             appearance: none;
             border: none;
-            
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 0 10px #378334;
-
+            background: rgba(255,255,255,0.15);
+            border-radius: 2px;
             overflow: hidden;
+            display: none;
         }
 
-        /* Chrome, Safari, Edge */
+        #status-progress::-webkit-progress-bar {
+            background: rgba(255,255,255,0.12);
+            border-radius: 2px;
+        }
+
         #status-progress::-webkit-progress-value {
-            background-color: #378334;
-            border-radius: 15px;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, #5bc49a, #a8e6cb);
+            border-radius: 2px;
+            transition: width 0.4s ease;
         }
 
-        /* Firefox */
         #status-progress::-moz-progress-bar {
-            background-color: #378334; 
-            border-radius: 10px;
-        }
-        
-        #custom-loading-text {
-            position: absolute;
-            top: 40%; 
-            width: 100%;
-            text-align: center;
-            font-family: 'Noto Sans', Arial, sans-serif;
-            font-size: 1.2rem;
-            color: black;
-            z-index: 100;
-            text-shadow: 0 2px 4px black;
-            pointer-events: none; 
+            background: linear-gradient(90deg, #5bc49a, #a8e6cb);
+            border-radius: 2px;
         }
 
+        #loading-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            color: rgba(180, 220, 200, 0.65);
+            text-transform: uppercase;
+        }
+
+        /* Notice (error state) */
+        #status-notice {
+            display: none;
+            background: rgba(20, 50, 30, 0.85);
+            border: 1px solid rgba(100, 200, 140, 0.3);
+            border-radius: 6px;
+            color: #c8e6d0;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            padding: 1rem 1.25rem;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        /* Bottom links */
         #custom-bottom-text {
             position: absolute;
-            bottom: 10px; 
+            bottom: 18px;
             width: 100%;
             text-align: center;
-            font-family: 'Noto Sans', Arial, sans-serif;
-            font-size: 1rem;
-            color: black;
-            z-index: 100;
-            text-shadow: 0 2px 4px black;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 300;
+            letter-spacing: 0.12em;
+            color: rgba(180, 220, 200, 0.5);
+            z-index: 10;
             pointer-events: all;
         }
 
+        #custom-bottom-text p { margin: 3px 0; }
+
         #custom-bottom-text a {
-            color: rgb(137, 252, 37);
+            color: rgba(140, 220, 170, 0.8);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(140,220,170,0.3);
+            transition: color 0.2s, border-color 0.2s;
+        }
+        #custom-bottom-text a:hover {
+            color: #a8e6c0;
+            border-color: rgba(168,230,192,0.6);
         }
 
-        #status-notice {
-            background-color: #5b3943;
-            border-radius: 0.5rem;
-            border: 1px solid #9b3943;
-            color: #e0e0e0;
-            font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-            line-height: 1.3;
-            margin: 0 2rem;
-            overflow: hidden;
-            padding: 1rem;
-            text-align: center;
-            z-index: 1;
+        /* Hidden status overlay (legacy godot elements) */
+        #status {
+            display: none;
         }
 
     </style>
-
 
 	</head>
 
 	<body>
 
+        <!-- ─── LOADING SCREEN ───────────────────────────────────── -->
         <div id="custom">
-            <div id="custom-loading-text">
-                <h1>Chargement du Portfolio...</h1>
-                <p>Veuillez patienter quelques instants</p>
+
+            <!-- Sky -->
+            <div id="sky"></div>
+
+            <!-- Stars (distant) -->
+            <svg id="stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="120" cy="60" r="1.2" fill="white" opacity="0.9"/>
+                <circle cx="280" cy="30" r="0.8" fill="white" opacity="0.7"/>
+                <circle cx="450" cy="80" r="1" fill="white" opacity="0.6"/>
+                <circle cx="600" cy="20" r="0.9" fill="white" opacity="0.8"/>
+                <circle cx="750" cy="55" r="1.3" fill="white" opacity="0.5"/>
+                <circle cx="900" cy="35" r="0.7" fill="white" opacity="0.9"/>
+                <circle cx="1050" cy="70" r="1.1" fill="white" opacity="0.7"/>
+                <circle cx="1200" cy="25" r="0.9" fill="white" opacity="0.6"/>
+                <circle cx="1350" cy="50" r="1" fill="white" opacity="0.8"/>
+                <circle cx="200" cy="100" r="0.6" fill="white" opacity="0.5"/>
+                <circle cx="820" cy="15" r="1.4" fill="white" opacity="0.9"/>
+                <circle cx="1100" cy="45" r="0.8" fill="white" opacity="0.6"/>
+                <circle cx="380" cy="110" r="0.7" fill="white" opacity="0.4"/>
+                <circle cx="670" cy="90" r="1" fill="white" opacity="0.7"/>
+                <circle cx="1280" cy="85" r="0.9" fill="white" opacity="0.5"/>
+            </svg>
+
+            <!-- LAYER 1 — Distant mountains (lightest) -->
+            <svg class="parallax-layer" style="animation: layerFloat 9s ease-in-out infinite;" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <clipPath id="mtn1clip">
+                        <path d="M0,480 L100,295 L180,345 L260,255 L340,185 L420,255 L500,205 L580,265 L660,165 L740,245 L820,195 L900,255 L980,205 L1060,265 L1140,215 L1220,295 L1300,245 L1380,288 L1440,265 L1440,900 L0,900 Z"/>
+                    </clipPath>
+                </defs>
+                <path d="M0,480 L100,295 L180,345 L260,255 L340,185 L420,255 L500,205 L580,265 L660,165 L740,245 L820,195 L900,255 L980,205 L1060,265 L1140,215 L1220,295 L1300,245 L1380,288 L1440,265 L1440,900 L0,900 Z" fill="#c8dfd3" opacity="0.55"/>
+                <!-- Snow caps clipped to mountain shape -->
+                <g clip-path="url(#mtn1clip)" fill="white" opacity="0.65">
+                    <path d="M300,235 L340,185 L380,238 Z"/>
+                    <path d="M620,210 L660,165 L700,212 Z"/>
+                    <path d="M780,215 L820,195 L858,218 Z"/>
+                    <path d="M460,228 L500,205 L540,230 Z"/>
+                    <path d="M940,228 L980,205 L1018,230 Z"/>
+                    <path d="M1100,238 L1140,215 L1178,240 Z"/>
+                </g>
+            </svg>
+
+            <!-- LAYER 2 — Mid mountains -->
+            <svg class="parallax-layer" style="animation: layerFloat 11s ease-in-out 1s infinite;" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <clipPath id="mtn2clip">
+                        <path d="M0,600 L80,425 L160,490 L260,368 L380,445 L460,385 L560,435 L660,355 L760,415 L860,365 L960,430 L1060,375 L1160,438 L1260,392 L1360,448 L1440,405 L1440,900 L0,900 Z"/>
+                    </clipPath>
+                </defs>
+                <path d="M0,600 L80,425 L160,490 L260,368 L380,445 L460,385 L560,435 L660,355 L760,415 L860,365 L960,430 L1060,375 L1160,438 L1260,392 L1360,448 L1440,405 L1440,900 L0,900 Z" fill="#3d7a5e" opacity="0.7"/>
+                <!-- Snow caps clipped to mountain shape -->
+                <g clip-path="url(#mtn2clip)" fill="rgba(220,242,232,0.85)">
+                    <path d="M222,392 L260,368 L298,394 Z"/>
+                    <path d="M622,378 L660,355 L698,380 Z"/>
+                    <path d="M822,388 L860,365 L898,390 Z"/>
+                    <path d="M1022,452 L1060,375 L1098,454 Z"/>
+                </g>
+            </svg>
+
+            <!-- Birds -->
+            <svg id="birds" width="80" height="30" viewBox="0 0 80 30" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,15 Q5,8 10,15" stroke="#b8d8c8" stroke-width="1.2" fill="none"/>
+                <path d="M14,12 Q19,5 24,12" stroke="#b8d8c8" stroke-width="1.2" fill="none"/>
+                <path d="M28,16 Q33,10 38,16" stroke="#9ec9b5" stroke-width="1" fill="none"/>
+                <path d="M44,10 Q48,5 52,10" stroke="#9ec9b5" stroke-width="1" fill="none"/>
+                <path d="M58,18 Q61,13 64,18" stroke="#8abda6" stroke-width="0.9" fill="none"/>
+                <path d="M70,13 Q73,9 76,13" stroke="#8abda6" stroke-width="0.9" fill="none"/>
+            </svg>
+
+            <!-- LAYER 3 — Near forest (mid-green) -->
+            <svg class="parallax-layer" style="animation: layerFloat 7s ease-in-out 2s infinite;" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,720
+                    L30,580 L50,620 L70,560 L95,600 L115,540
+                    L140,580 L160,520 L185,560 L210,500
+                    L235,545 L255,490 L275,535 L300,475
+                    L325,515 L350,460 L370,500 L395,445
+                    L420,490 L445,435 L470,480 L495,430
+                    L520,475 L545,425 L570,468 L595,415
+                    L618,460 L642,408 L665,455 L688,405
+                    L712,450 L736,400 L758,448 L782,398
+                    L806,445 L830,395 L852,442 L876,392
+                    L900,440 L924,390 L948,438 L972,388
+                    L996,435 L1020,386 L1044,432 L1068,384
+                    L1092,430 L1116,382 L1140,428 L1164,385
+                    L1188,432 L1212,386 L1236,430 L1260,384
+                    L1284,428 L1308,382 L1332,425 L1360,380
+                    L1385,422 L1408,378 L1430,418 L1440,400
+                    L1440,900 L0,900 Z"
+                    fill="#2a5e42" opacity="0.85"/>
+            </svg>
+
+            <!-- Mist layers -->
+            <div class="mist mist-1"></div>
+            <div class="mist mist-2"></div>
+            <div class="mist mist-3"></div>
+
+
+
+            <!-- ─── UI CENTER ──────────────────────────────────────── -->
+            <div id="ui-overlay">
+                <div id="logo-title">FYRAXYS</div>
+                <div id="logo-sub">Portfolio</div>
+                <div id="progress-container">
+                    <progress id="status-progress" value="0" max="100"></progress>
+                    <div id="loading-label">Chargement en cours…</div>
+                    <div id="status-notice"></div>
+                </div>
             </div>
 
-            <div id="status">
-                <progress id="status-progress"></progress>
-                <div id="status-notice"></div>
-            </div>
-
+            <!-- Bottom text -->
             <div id="custom-bottom-text">
-                <p>Mauvaise connexion ? Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a></p>
+                <p>Mauvaise connexion&nbsp;? Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a></p>
                 <p>FYRAXYS &copy; 2026</p>
             </div>
+
+            <!-- Hidden legacy Godot overlay (keeps JS compatibility) -->
+            <div id="status" style="display:none;">
+                <progress id="status-progress-hidden"></progress>
+                <div id="status-notice-hidden"></div>
+            </div>
+
         </div>
 
         <canvas id="canvas">
-			Oups ! Il semblerait que votre navigateur ne supporte pas le système de canvas. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
-		</canvas>
+            Oups&nbsp;! Il semblerait que votre navigateur ne supporte pas le système de canvas.
+            Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
+        </canvas>
 
-		<noscript>
-			Oups ! Il semblerait que votre navigateur ne supporte pas JavaScript. Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
-		</noscript>
+        <noscript>
+            Oups&nbsp;! Il semblerait que votre navigateur ne supporte pas JavaScript.
+            Consultez la <a href="https://github.com/FYRAXYS" target="_blank">version statique</a>
+        </noscript>
 
-		<script src="index.js"></script>
-		<script>
+        <!-- Snow particles (JS-generated) -->
+        <script>
+        (function() {
+            const screen = document.getElementById('custom');
+            for (let i = 0; i < 28; i++) {
+                const s = document.createElement('div');
+                s.className = 'snowflake';
+                const size = Math.random() * 3 + 1;
+                s.style.cssText = [
+                    'width:' + size + 'px',
+                    'height:' + size + 'px',
+                    'left:' + Math.random() * 100 + '%',
+                    'animation-duration:' + (Math.random() * 10 + 8) + 's',
+                    'animation-delay:' + (Math.random() * 12) + 's',
+                    'opacity:' + (Math.random() * 0.5 + 0.3)
+                ].join(';');
+                screen.appendChild(s);
+            }
+        })();
+        </script>
+
+        <script src="index.js"></script>
+        <script>
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":13249744,"index.wasm":1589584},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
-	const statusOverlay = document.getElementById('status');
-	const statusProgress = document.getElementById('status-progress');
-	const statusNotice = document.getElementById('status-notice');
+    const statusProgress = document.getElementById('status-progress');
+    const statusNotice   = document.getElementById('status-notice');
+    const loadingLabel   = document.getElementById('loading-label');
 
-	let initializing = true;
-	let statusMode = '';
+    let initializing = true;
+    let statusMode = '';
 
-	function setStatusMode(mode) {
-		if (statusMode === mode || !initializing) {
-			return;
-		}
+    function setStatusMode(mode) {
+        if (statusMode === mode || !initializing) return;
+
         if (mode === 'hidden') {
-            const statusElement = document.getElementById('custom'); 
-            
-            if (statusElement) {
-                // LE SECRET : On force le navigateur à recalculer l'affichage
-                // Cela empêche le navigateur de "sauter" l'animation
-                void statusElement.offsetWidth; 
-                
-                // On déclenche l'animation
-                statusElement.classList.add('fade-out-html');
-                
-                // On supprime l'élément pile quand l'animation se termine (1.5s)
-                setTimeout(() => {
-                    statusElement.style.display = 'none';
-                }, 1000);
+            const loadingEl = document.getElementById('custom');
+            if (loadingEl) {
+                void loadingEl.offsetWidth;
+                loadingEl.classList.add('fade-out-html');
+                setTimeout(() => { loadingEl.style.display = 'none'; }, 1200);
             }
             return;
         }
-		statusOverlay.style.visibility = 'visible';
-		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
-		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
-		statusMode = mode;
-	}
 
-	function setStatusNotice(text) {
-		while (statusNotice.lastChild) {
-			statusNotice.removeChild(statusNotice.lastChild);
-		}
-		const lines = text.split('\n');
-		lines.forEach((line) => {
-			statusNotice.appendChild(document.createTextNode(line));
-			statusNotice.appendChild(document.createElement('br'));
-		});
-	}
+        if (mode === 'progress') {
+            statusProgress.style.display = 'block';
+            if (loadingLabel) loadingLabel.textContent = 'Chargement en cours…';
+        }
+        if (mode === 'notice') {
+            statusNotice.style.display = 'block';
+        }
+        statusMode = mode;
+    }
 
-	function displayFailureNotice(err) {
-		console.error(err);
-		if (err instanceof Error) {
-			setStatusNotice(err.message);
-		} else if (typeof err === 'string') {
-			setStatusNotice(err);
-		} else {
-			setStatusNotice('An unknown error occurred.');
-		}
-		setStatusMode('notice');
-		initializing = false;
-	}
+    function setStatusNotice(text) {
+        while (statusNotice.lastChild) statusNotice.removeChild(statusNotice.lastChild);
+        text.split('\n').forEach((line) => {
+            statusNotice.appendChild(document.createTextNode(line));
+            statusNotice.appendChild(document.createElement('br'));
+        });
+    }
 
-	const missing = Engine.getMissingFeatures({
-		threads: GODOT_THREADS_ENABLED,
-	});
+    function displayFailureNotice(err) {
+        console.error(err);
+        if (err instanceof Error)      setStatusNotice(err.message);
+        else if (typeof err === 'string') setStatusNotice(err);
+        else                           setStatusNotice('An unknown error occurred.');
+        setStatusMode('notice');
+        initializing = false;
+    }
 
-	if (missing.length !== 0) {
-		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
-			let serviceWorkerRegistrationPromise;
-			try {
-				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
-			} catch (err) {
-				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
-			}
-			// There's a chance that installing the service worker would fix the issue
-			Promise.race([
-				serviceWorkerRegistrationPromise.then((registration) => {
-					if (registration != null) {
-						return Promise.reject(new Error('Service worker already exists.'));
-					}
-					return registration;
-				}).then(() => engine.installServiceWorker()),
-				// For some reason, `getRegistration()` can stall
-				new Promise((resolve) => {
-					setTimeout(() => resolve(), 2000);
-				}),
-			]).then(() => {
-				// Reload if there was no error.
-				window.location.reload();
-			}).catch((err) => {
-				console.error('Error while registering service worker:', err);
-			});
-		} else {
-			// Display the message as usual
-			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
-			displayFailureNotice(missingMsg + missing.join('\n'));
-		}
-	} else {
-		setStatusMode('progress');
-		engine.startGame({
-			'onProgress': function (current, total) {
-				if (current > 0 && total > 0) {
-					statusProgress.value = current;
-					statusProgress.max = total;
-				} else {
-					statusProgress.removeAttribute('value');
-					statusProgress.removeAttribute('max');
-				}
-			},
-		}).then(() => {
-			setStatusMode('hidden');
-		}, displayFailureNotice);
-	}
+    const missing = Engine.getMissingFeatures({ threads: GODOT_THREADS_ENABLED });
+
+    if (missing.length !== 0) {
+        if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+            let swPromise;
+            try { swPromise = navigator.serviceWorker.getRegistration(); }
+            catch (err) { swPromise = Promise.reject(new Error('Service worker registration failed.')); }
+            Promise.race([
+                swPromise.then((reg) => {
+                    if (reg != null) return Promise.reject(new Error('Service worker already exists.'));
+                    return reg;
+                }).then(() => engine.installServiceWorker()),
+                new Promise((resolve) => { setTimeout(() => resolve(), 2000); }),
+            ]).then(() => { window.location.reload(); })
+              .catch((err) => { console.error('Error while registering service worker:', err); });
+        } else {
+            const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+            displayFailureNotice(missingMsg + missing.join('\n'));
+        }
+    } else {
+        setStatusMode('progress');
+        engine.startGame({
+            'onProgress': function (current, total) {
+                if (current > 0 && total > 0) {
+                    statusProgress.value = current;
+                    statusProgress.max   = total;
+                    const pct = Math.min(100, Math.round((current / total) * 100));
+                    if (loadingLabel) loadingLabel.textContent = 'Chargement… ' + pct + '%';
+                } else {
+                    statusProgress.removeAttribute('value');
+                    statusProgress.removeAttribute('max');
+                    if (loadingLabel) loadingLabel.textContent = 'Chargement en cours…';
+                }
+            },
+        }).then(() => { setStatusMode('hidden'); }, displayFailureNotice);
+    }
 }());
-		</script>
+        </script>
 	</body>
 </html>
-
-
-

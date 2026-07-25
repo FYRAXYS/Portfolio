@@ -1,0 +1,299 @@
+[gd_scene format=3 uid="uid://uwitgj4d50qv"]
+
+[ext_resource type="Texture2D" uid="uid://buq5duqag0pcb" path="res://web/index.icon.png" id="1_mpm10"]
+[ext_resource type="Script" uid="uid://b7ufmjpiw0e8s" path="res://scripts/popup_manager.gd" id="1_sdp6g"]
+[ext_resource type="StyleBox" uid="uid://cdjjon0yp65rn" path="res://materials/styles/tabContainer/tabContainer_bar.tres" id="3_vvsxe"]
+[ext_resource type="StyleBox" uid="uid://bq04rx7eqaeyy" path="res://materials/styles/tabContainer/tabContainer_unSelect.tres" id="4_mqf12"]
+[ext_resource type="StyleBox" uid="uid://54yi1cmyn0xj" path="res://materials/styles/tabContainer/tabContainer_hover.tres" id="5_mqf12"]
+[ext_resource type="StyleBox" uid="uid://dq0ytd1biticf" path="res://materials/styles/tabContainer/tabContainer_select.tres" id="6_1qg07"]
+[ext_resource type="StyleBox" uid="uid://s1ijuh75my1l" path="res://materials/styles/tabContainer/tabContainer_disabled.tres" id="7_11efk"]
+[ext_resource type="Texture2D" uid="uid://dg63ygrc1xnde" path="res://ressources/images/code.png" id="8_mqf12"]
+[ext_resource type="Texture2D" uid="uid://tci8kgb5g3c8" path="res://ressources/images/clock.png" id="9_1qg07"]
+[ext_resource type="StyleBox" uid="uid://bk5es56ck01tw" path="res://materials/styles/PanelContainer/ContentStyle.tres" id="10_1qg07"]
+[ext_resource type="LabelSettings" uid="uid://byfgsrq8sstrm" path="res://materials/styles/Labels/TitleLabel.tres" id="11_11efk"]
+[ext_resource type="Texture2D" uid="uid://wke57gaq1nv4" path="res://ressources/images/group.png" id="12_8vcxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alka2"]
+content_margin_left = 35.0
+content_margin_top = 35.0
+content_margin_right = 35.0
+content_margin_bottom = 35.0
+bg_color = Color(0.8627451, 1, 1, 0.50980395)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3ubs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.103743605, 0.103743516, 0.103743516, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 4
+
+[sub_resource type="InputEventKey" id="InputEventKey_vvsxe"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_g2pe8"]
+events = [SubResource("InputEventKey_vvsxe")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2pe8"]
+content_margin_left = 0.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="ProjectCard" type="PanelContainer" unique_id=778344325]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_alka2")
+script = ExtResource("1_sdp6g")
+
+[node name="Exit" type="Button" parent="." unique_id=1065153031]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/outline_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3ubs")
+button_mask = 7
+shortcut = SubResource("Shortcut_g2pe8")
+text = "Fermer"
+icon = ExtResource("1_mpm10")
+expand_icon = true
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=2040297021]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/tab_separation = 35
+theme_override_constants/icon_max_width = 25
+theme_override_font_sizes/font_size = 18
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2pe8")
+theme_override_styles/tabbar_background = ExtResource("3_vvsxe")
+theme_override_styles/tab_unselected = ExtResource("4_mqf12")
+theme_override_styles/tab_hovered = ExtResource("5_mqf12")
+theme_override_styles/tab_selected = ExtResource("6_1qg07")
+theme_override_styles/tab_disabled = ExtResource("7_11efk")
+tab_alignment = 1
+current_tab = 1
+tab_0/icon = ExtResource("8_mqf12")
+tab_1/icon = ExtResource("9_1qg07")
+
+[node name="Resumé" type="MarginContainer" parent="TabContainer" unique_id=768486272]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_tab_index = 0
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Resumé" unique_id=1981726592]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Resumé/HBox" unique_id=1812932033]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DescriptionContainer" type="PanelContainer" parent="TabContainer/Resumé/HBox/VBox" unique_id=1415198545]
+custom_minimum_size = Vector2(340, 480)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Resumé/HBox/VBox/DescriptionContainer" unique_id=554215670]
+custom_minimum_size = Vector2(380, 0)
+clip_contents = true
+layout_mode = 2
+
+[node name="Infos" type="Label" parent="TabContainer/Resumé/HBox/VBox/DescriptionContainer/VBox" unique_id=562919955]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "・Durée :
+・Nombre de personnes :
+・Technologies utilisés : "
+
+[node name="Separator" type="HSeparator" parent="TabContainer/Resumé/HBox/VBox/DescriptionContainer/VBox" unique_id=138559404]
+visibility_layer = 0
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Texte" type="Label" parent="TabContainer/Resumé/HBox/VBox/DescriptionContainer/VBox" unique_id=1570942851]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13"
+autowrap_mode = 2
+
+[node name="VBox2" type="VBoxContainer" parent="TabContainer/Resumé/HBox" unique_id=1792524600]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitreContainer" type="PanelContainer" parent="TabContainer/Resumé/HBox/VBox2" unique_id=1724807173]
+custom_minimum_size = Vector2(400, 100)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Resumé/HBox/VBox2/TitreContainer" unique_id=233482377]
+layout_mode = 2
+alignment = 1
+
+[node name="Titre" type="Label" parent="TabContainer/Resumé/HBox/VBox2/TitreContainer/HBox" unique_id=1201674943]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Le Titre d'un projet"
+label_settings = ExtResource("11_11efk")
+autowrap_mode = 2
+
+[node name="ImageContainer" type="PanelContainer" parent="TabContainer/Resumé/HBox/VBox2" unique_id=2064920625]
+custom_minimum_size = Vector2(400, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="Image" type="TextureRect" parent="TabContainer/Resumé/HBox/VBox2/ImageContainer" unique_id=1762295904]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("12_8vcxj")
+expand_mode = 4
+
+[node name="Détails" type="MarginContainer" parent="TabContainer" unique_id=1286630179]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Détails" unique_id=2006429607]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Détails" unique_id=943312483]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Détails/HBox" unique_id=418301877]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DescriptionContainer" type="PanelContainer" parent="TabContainer/Détails/HBox/VBox" unique_id=1470038131]
+custom_minimum_size = Vector2(340, 480)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="VBox" type="VBoxContainer" parent="TabContainer/Détails/HBox/VBox/DescriptionContainer" unique_id=303712082]
+custom_minimum_size = Vector2(380, 0)
+clip_contents = true
+layout_mode = 2
+
+[node name="Infos" type="Label" parent="TabContainer/Détails/HBox/VBox/DescriptionContainer/VBox" unique_id=1431277440]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "・Durée :
+・Nombre de personnes :
+・Technologies utilisés : "
+
+[node name="Separator" type="HSeparator" parent="TabContainer/Détails/HBox/VBox/DescriptionContainer/VBox" unique_id=110613300]
+visibility_layer = 0
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Texte" type="Label" parent="TabContainer/Détails/HBox/VBox/DescriptionContainer/VBox" unique_id=731226206]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "texte"
+autowrap_mode = 2
+
+[node name="VBox2" type="VBoxContainer" parent="TabContainer/Détails/HBox" unique_id=1013892974]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitreContainer" type="PanelContainer" parent="TabContainer/Détails/HBox/VBox2" unique_id=1507338861]
+custom_minimum_size = Vector2(400, 100)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="HBox" type="HBoxContainer" parent="TabContainer/Détails/HBox/VBox2/TitreContainer" unique_id=622743559]
+layout_mode = 2
+alignment = 1
+
+[node name="Titre" type="Label" parent="TabContainer/Détails/HBox/VBox2/TitreContainer/HBox" unique_id=357006109]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Le Titre d'un projet"
+label_settings = ExtResource("11_11efk")
+autowrap_mode = 2
+
+[node name="ImageContainer" type="PanelContainer" parent="TabContainer/Détails/HBox/VBox2" unique_id=112526805]
+custom_minimum_size = Vector2(400, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("10_1qg07")
+
+[node name="Image" type="TextureRect" parent="TabContainer/Détails/HBox/VBox2/ImageContainer" unique_id=1334359692]
+layout_mode = 2
+texture = ExtResource("12_8vcxj")
+expand_mode = 4
