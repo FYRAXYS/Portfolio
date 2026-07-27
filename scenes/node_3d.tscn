@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4dtt3weov54" path="res://materials/objets/clouds/cloud1.blend" id="3_5t4e2"]
 [ext_resource type="PackedScene" uid="uid://7ybgyc5xeoig" path="res://materials/objets/clouds/cloud2.blend" id="4_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://7sbh3jpyfrqn" path="res://materials/objets/clouds/cloud3.blend" id="5_a6664"]
+[ext_resource type="PackedScene" uid="uid://dw1aesoqymha5" path="res://materials/objets/house/house.blend" id="8_cptob"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ns6u7"]
 rayleigh_color = Color(0.36513993, 0.7665061, 0.9999997, 1)
@@ -31,42 +32,120 @@ fog_density = 0.005
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oqwcg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns6u7"]
-albedo_color = Color(0.52446204, 0.31564817, 0.018522734, 1)
+[sub_resource type="Gradient" id="Gradient_cptob"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b2yaj"]
+gradient = SubResource("Gradient_cptob")
+
+[sub_resource type="Curve" id="Curve_cptob"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0.013422817, 0.40148687), 0.0, 0.0, 0, 0, Vector2(0.99664426, 1.1486988), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cptob"]
+curve = SubResource("Curve_cptob")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cptob"]
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.29999998
+gravity = Vector3(0, 0.05, 0)
+scale_min = 0.099999994
+scale_max = 0.79999995
+scale_over_velocity_curve = SubResource("CurveTexture_cptob")
+color_ramp = SubResource("GradientTexture1D_b2yaj")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 1.308
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am7si"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.71838135, 0.71838135, 0.71838135, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_68pkx"]
+material = SubResource("StandardMaterial3D_am7si")
+size = Vector2(0.03, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cptob"]
+albedo_color = Color(1, 0.40784314, 0, 1)
+metallic = 0.15
+disable_receive_shadows = true
+
+[sub_resource type="TextMesh" id="TextMesh_68pkx"]
+material = SubResource("StandardMaterial3D_cptob")
+text = "FYRAXYS"
+font_size = 35
+curve_step = 0.1
+depth = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2yaj"]
+albedo_color = Color(0.87058824, 0.7058824, 0.07058824, 1)
+metallic = 0.15
+disable_receive_shadows = true
+
+[sub_resource type="TextMesh" id="TextMesh_q712h"]
+material = SubResource("StandardMaterial3D_b2yaj")
+text = "Développeur"
+font_size = 25
+curve_step = 0.1
+depth = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q712h"]
+albedo_color = Color(0.5437871, 0.55421555, 0.5475194, 1)
+metallic = 0.15
+disable_receive_shadows = true
+
+[sub_resource type="TextMesh" id="TextMesh_1enmr"]
+material = SubResource("StandardMaterial3D_q712h")
+text = "work in progress..."
+font_size = 8
+depth = 0.03
 
 [node name="Node3D" type="Node3D" unique_id=1663185536]
 script = ExtResource("1_10v3s")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=625911439]
+[node name="Environnement" type="Node" parent="." unique_id=1101064324]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environnement" unique_id=625911439]
 environment = SubResource("Environment_xvgsr")
 camera_attributes = SubResource("CameraAttributesPractical_oqwcg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=396928883]
-transform = Transform3D(-0.7979058, 0.26743737, -0.54020715, -0.5236197, 0.13644561, 0.8409549, 0.29861158, 0.9538656, 0.031164661, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environnement" unique_id=396928883]
+transform = Transform3D(-0.7979058, 0.2674373, -0.54020715, -0.5236197, 0.13644557, 0.8409549, 0.29861158, 0.9538658, 0.031164728, 0, 0, 0)
 light_intensity_lux = 30198.02
 light_temperature = 5500.0
 light_energy = 5.0
 shadow_enabled = true
 
-[node name="moutain_bg" parent="." unique_id=520481380 instance=ExtResource("1_ns6u7")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=326000917]
+transform = Transform3D(-0.093324125, 0, -0.9956358, 0, 1, 0, 0.9956358, 0, -0.093324125, -2.2828465, 0.5386169, -0.06337139)
+
+[node name="Moutains" type="Node3D" parent="." unique_id=123972212]
+
+[node name="moutain_bg" parent="Moutains" unique_id=520481380 instance=ExtResource("1_ns6u7")]
 transform = Transform3D(0.6256987, 0, -0.780065, 0, 1, 0, 0.780065, 0, 0.6256987, 5.953287, -0.26278138, 2.172771)
 
-[node name="moutain_bg2" parent="." unique_id=177570080 instance=ExtResource("1_ns6u7")]
+[node name="moutain_bg2" parent="Moutains" unique_id=177570080 instance=ExtResource("1_ns6u7")]
 transform = Transform3D(0.02228126, 0, 0.9997518, 0, 1, 0, -0.9997518, 0, 0.02228126, 3.4835505, -0.26278138, 4.226631)
 
-[node name="moutain_bg3" parent="." unique_id=1983442424 instance=ExtResource("1_ns6u7")]
+[node name="moutain_bg3" parent="Moutains" unique_id=1983442424 instance=ExtResource("1_ns6u7")]
 transform = Transform3D(0.023555584, 0, 2.0494313, 0, 1, 0, -0.9997226, 0, 0.048288956, -0.88766956, -0.26278138, 5.288237)
 
-[node name="moutain_master" parent="." unique_id=1246887703 instance=ExtResource("1_tyffc")]
+[node name="moutain_master" parent="Moutains" unique_id=1246887703 instance=ExtResource("1_tyffc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002389431, 0, -0.00729084)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=326000917]
-transform = Transform3D(-0.093324095, 0, -0.99563587, 0, 1, 0, 0.99563587, 0, -0.093324095, -2.2062888, 0.69356656, -0.3219747)
+[node name="house" parent="." unique_id=1072739032 instance=ExtResource("8_cptob")]
+transform = Transform3D(0.011134591, 0, -0.043600705, 0, 0.045, 0, 0.043600705, 0, 0.011134591, -0.7351888, 0.18085688, -0.045621768)
 
-[node name="house" type="CSGBox3D" parent="." unique_id=1125634042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74787647, 0.15752912, -0.056608625)
-size = Vector3(0.07050781, 0.1, 0.121875)
-material = SubResource("StandardMaterial3D_ns6u7")
+[node name="Smoke" type="GPUParticles3D" parent="house" unique_id=1420734559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8354678, 2.1368208, 0.5252104)
+amount = 30
+lifetime = 4.5
+process_material = SubResource("ParticleProcessMaterial_cptob")
+draw_pass_1 = SubResource("QuadMesh_68pkx")
 
 [node name="Clouds" type="Node3D" parent="." unique_id=13401165]
 transform = Transform3D(0.11247786, 0, 0.99365413, 0, 1, 0, -0.99365413, 0, 0.11247786, -4.398063, 0, 24.110456)
@@ -112,3 +191,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Node3D" parent="." unique_id=1945498514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50372785, 2.3841858e-07, -0.104409575)
+
+[node name="Name" type="MeshInstance3D" parent="Text" unique_id=1710106817]
+transform = Transform3D(-0.19625679, 0, -0.98055255, 0, 1, 0, 0.98055255, 0, -0.19625679, -0.6132027, 1.2336187, 1)
+mesh = SubResource("TextMesh_68pkx")
+
+[node name="Subtitle" type="MeshInstance3D" parent="Text" unique_id=560362704]
+transform = Transform3D(-0.34494442, 0, -0.9386231, 0, 1, 0, 0.9386231, 0, -0.34494442, -0.7239193, 0.91844404, 1.6081197)
+mesh = SubResource("TextMesh_q712h")
+
+[node name="Subtitle2" type="MeshInstance3D" parent="Text" unique_id=2115745649]
+transform = Transform3D(0.0032976195, 0, -0.9999945, 0, 1, 0, 0.9999945, 0, 0.0032976195, -1.3995038, 0.5183743, 0.17256619)
+mesh = SubResource("TextMesh_1enmr")
