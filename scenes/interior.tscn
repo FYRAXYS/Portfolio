@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://ltn3w6xlmvpu"]
+
+[ext_resource type="Script" uid="uid://cyrme3542vhqt" path="res://scripts/interior.gd" id="1_interior"]
+
+[sub_resource type="Environment" id="Environment_interior"]
+background_mode = 1
+background_color = Color(0.08235294, 0.07058824, 0.09411765, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5137255, 0.47843137, 0.42352942, 1)
+ambient_light_energy = 1.2
+tonemap_mode = 4
+tonemap_white = 10.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_interior"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_unit"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_color = Color(0.5372549, 0.38039216, 0.25490198, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_color = Color(0.8156863, 0.7607843, 0.6784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood"]
+albedo_color = Color(0.39215687, 0.25882354, 0.16470589, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_paper"]
+albedo_color = Color(0.9098039, 0.8627451, 0.7294118, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_accent"]
+albedo_color = Color(0.93333334, 0.49019608, 0.14901961, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone"]
+albedo_color = Color(0.44313726, 0.44313726, 0.47058824, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_door"]
+albedo_color = Color(0.2901961, 0.1764706, 0.10980392, 1)
+roughness = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exit"]
+size = Vector3(1.6, 2.4, 0.8)
+
+[node name="Interior" type="Node3D" unique_id=2020399336]
+script = ExtResource("1_interior")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344328724]
+environment = SubResource("Environment_interior")
+camera_attributes = SubResource("CameraAttributesPractical_interior")
+
+[node name="SunThroughWindow" type="DirectionalLight3D" parent="." unique_id=98938599]
+transform = Transform3D(0.70710677, -0.35355338, 0.61237246, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.61237246, 0, 6, 0)
+light_intensity_lux = 6000.0
+shadow_enabled = true
+
+[node name="Lamp" type="OmniLight3D" parent="." unique_id=2010583821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.6, 0.5)
+light_intensity_lumens = 1200.0
+light_color = Color(1, 0.84313726, 0.654902, 1)
+omni_range = 9.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1075423714]
+transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 10.392355, 11.592205, 10.392355)
+projection = 1
+current = true
+size = 14.0
+
+[node name="Room" type="Node3D" parent="." unique_id=505126084]
+
+[node name="Floor" type="MeshInstance3D" parent="Room" unique_id=1840714423]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_floor")
+
+[node name="WallBack" type="MeshInstance3D" parent="Room" unique_id=49528807]
+transform = Transform3D(10, 0, 0, 0, 3.2, 0, 0, 0, 0.2, 0, 1.6, -5)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="WallLeft" type="MeshInstance3D" parent="Room" unique_id=1036746527]
+transform = Transform3D(0.2, 0, 0, 0, 3.2, 0, 0, 0, 10, -5, 1.6, 0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_wall")
+
+[node name="Furniture" type="Node3D" parent="." unique_id=1952397290]
+
+[node name="Bookshelf" type="MeshInstance3D" parent="Furniture" unique_id=225802115]
+transform = Transform3D(2.6, 0, 0, 0, 2.4, 0, 0, 0, 0.5, -1.4, 1.2, -4.6)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_wood")
+
+[node name="BookshelfLabel" type="Label3D" parent="Furniture" unique_id=324019953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 2.9, -4.3)
+pixel_size = 0.015
+billboard = 1
+text = "Projets"
+font_size = 48
+outline_size = 14
+
+[node name="WallMap" type="MeshInstance3D" parent="Furniture" unique_id=1641082267]
+transform = Transform3D(0.12, 0, 0, 0, 1.6, 0, 0, 0, 2.6, -4.84, 1.9, -1)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_paper")
+
+[node name="WallMapLabel" type="Label3D" parent="Furniture" unique_id=1367698566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3, -1)
+pixel_size = 0.015
+billboard = 1
+text = "Parcours"
+font_size = 48
+outline_size = 14
+
+[node name="Desk" type="MeshInstance3D" parent="Furniture" unique_id=576736513]
+transform = Transform3D(2.2, 0, 0, 0, 0.9, 0, 0, 0, 1.2, 2.4, 0.45, -2)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_wood")
+
+[node name="DeskScreen" type="MeshInstance3D" parent="Furniture" unique_id=471912462]
+transform = Transform3D(1, 0, 0, 0, 0.65, 0, 0, 0, 0.1, 2.4, 1.22, -2.3)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_accent")
+
+[node name="DeskLabel" type="Label3D" parent="Furniture" unique_id=1007720282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.1, -2)
+pixel_size = 0.015
+billboard = 1
+text = "Compétences"
+font_size = 48
+outline_size = 14
+
+[node name="Fireplace" type="MeshInstance3D" parent="Furniture" unique_id=1904559143]
+transform = Transform3D(0.9, 0, 0, 0, 2.6, 0, 0, 0, 2, -4.3, 1.3, 2.4)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_stone")
+
+[node name="FireplaceLabel" type="Label3D" parent="Furniture" unique_id=711549987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 3, 2.4)
+pixel_size = 0.015
+billboard = 1
+text = "Présentation"
+font_size = 48
+outline_size = 14
+
+[node name="Door" type="MeshInstance3D" parent="Furniture" unique_id=1849664377]
+transform = Transform3D(1.4, 0, 0, 0, 2.4, 0, 0, 0, 0.16, 2.6, 1.2, -4.9)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_door")
+
+[node name="DoorLabel" type="Label3D" parent="Furniture" unique_id=1583920846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 2.9, -4.6)
+pixel_size = 0.015
+billboard = 1
+text = "Sortie"
+font_size = 48
+outline_size = 14
+
+[node name="ExitZone" type="Area3D" parent="." unique_id=1062050085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1.2, -4.7)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitZone" unique_id=1042377096]
+shape = SubResource("BoxShape3D_exit")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=628863079]
+
+[node name="ExitButton" type="Button" parent="UI" unique_id=1219248724]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -104.0
+offset_right = 90.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ressortir"

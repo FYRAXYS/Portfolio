@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4jq7o4lkxm2k"]
 
-[ext_resource type="Script" uid="uid://nvpxfl2tbyk6" path="res://scripts/main.gd" id="1_10v3s"]
+[ext_resource type="Script" uid="uid://d1f4bts1ilm6b" path="res://scripts/exterior.gd" id="1_10v3s"]
 [ext_resource type="Script" uid="uid://ch13dxvdxg4e0" path="res://scripts/clouds_drift.gd" id="1_a6664"]
 [ext_resource type="PackedScene" uid="uid://ou8py7b832mx" path="res://materials/objets/terrain/moutain_bg.glb" id="1_ns6u7"]
 [ext_resource type="PackedScene" uid="uid://cu0vvocnmv5q1" path="res://materials/objets/terrain/moutain_master.glb" id="1_tyffc"]
@@ -31,6 +31,9 @@ fog_sun_scatter = 0.3
 fog_density = 0.005
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oqwcg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_house"]
+size = Vector3(0.2, 0.14, 0.2)
 
 [sub_resource type="Gradient" id="Gradient_cptob"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -122,6 +125,18 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=326000917]
 transform = Transform3D(-0.093324125, 0, -0.9956358, 0, 1, 0, 0.9956358, 0, -0.093324125, -2.2828465, 0.5386169, -0.06337139)
+current = true
+
+[node name="CameraArrival" type="Marker3D" parent="." unique_id=701001]
+transform = Transform3D(-0.093324125, 0.022622244, -0.99537873, 0, 0.99974185, 0.022721404, 0.9956358, 0.0021204553, -0.09330003, -0.9542287, 0.21585688, -0.06615307)
+
+[node name="HouseClickZone" type="Area3D" parent="." unique_id=701002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7351888, 0.23085688, -0.045621768)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HouseClickZone" unique_id=701003]
+shape = SubResource("BoxShape3D_house")
 
 [node name="Moutains" type="Node3D" parent="." unique_id=123972212]
 
@@ -181,17 +196,6 @@ transform = Transform3D(0.1685045, 0, 0.6794168, 0, 0.70000005, 0, -0.6794168, 0
 [node name="cloud9" parent="Clouds" unique_id=1506929249 instance=ExtResource("5_a6664")]
 transform = Transform3D(0.16850452, 0, 0.67941684, 0, 0.70000005, 0, -0.67941684, 0, 0.16850452, -0.06352806, 6.1895356, 3.299205)
 
-[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1298195869]
-layer = 100
-
-[node name="ColorRect" type="ColorRect" parent="TransitionLayer" unique_id=1679918476]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="Text" type="Node3D" parent="." unique_id=1945498514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50372785, 2.3841858e-07, -0.104409575)
 
@@ -206,3 +210,19 @@ mesh = SubResource("TextMesh_q712h")
 [node name="Subtitle2" type="MeshInstance3D" parent="Text" unique_id=2115745649]
 transform = Transform3D(0.0032976195, 0, -0.9999945, 0, 1, 0, 0.9999945, 0, 0.0032976195, -1.3995038, 0.5183743, 0.17256619)
 mesh = SubResource("TextMesh_1enmr")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=701004]
+
+[node name="EnterButton" type="Button" parent="UI" unique_id=701005]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -104.0
+offset_right = 110.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Entrer dans le chalet"
