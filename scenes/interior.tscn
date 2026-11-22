@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://cyrme3542vhqt" path="res://scripts/interior.gd" id="1_interior"]
 [ext_resource type="Script" uid="uid://du42501c2jmhc" path="res://scripts/interior_lighting.gd" id="2_cycle"]
 [ext_resource type="Resource" uid="uid://cf6o3xojq7u1a" path="res://ressources/day_cycle/day_cycle_palette.tres" id="3_palette"]
+[ext_resource type="Script" uid="uid://cojb4b724ocg7" path="res://scripts/interaction/interactive_spot.gd" id="4_spot"]
+[ext_resource type="Script" uid="uid://xf3rl337qww" path="res://scripts/interaction/focus_controller.gd" id="5_focus"]
+[ext_resource type="Script" uid="uid://uc4mcsr485oi" path="res://scripts/interaction/bookshelf_rack.gd" id="6_rack"]
+[ext_resource type="PackedScene" path="res://scenes/interaction/detail_viewer.tscn" id="7_viewer"]
 
 [sub_resource type="Environment" id="Environment_interior"]
 background_mode = 1
@@ -43,8 +47,27 @@ roughness = 0.95
 albedo_color = Color(0.2901961, 0.1764706, 0.10980392, 1)
 roughness = 0.8
 
+[sub_resource type="StandardMaterial3D" id="Mat_notebook"]
+albedo_color = Color(0.5372549, 0.42352942, 0.70980394, 1)
+roughness = 0.7
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_exit"]
 size = Vector3(1.6, 2.4, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shelf"]
+size = Vector3(2.9, 2.6, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_map"]
+size = Vector3(0.5, 1.9, 2.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_desk"]
+size = Vector3(2.5, 1.9, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_notebook"]
+size = Vector3(0.6, 0.35, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fireplace"]
+size = Vector3(1.3, 2.9, 2.3)
 
 [node name="Interior" type="Node3D" unique_id=2020399336]
 script = ExtResource("1_interior")
@@ -105,6 +128,7 @@ surface_material_override/0 = SubResource("Mat_wood")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 2.9, -4.3)
 pixel_size = 0.015
 billboard = 1
+no_depth_test = true
 text = "Projets"
 font_size = 48
 outline_size = 14
@@ -118,6 +142,7 @@ surface_material_override/0 = SubResource("Mat_paper")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3, -1)
 pixel_size = 0.015
 billboard = 1
+no_depth_test = true
 text = "Parcours"
 font_size = 48
 outline_size = 14
@@ -136,6 +161,7 @@ surface_material_override/0 = SubResource("Mat_accent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.1, -2)
 pixel_size = 0.015
 billboard = 1
+no_depth_test = true
 text = "Compétences"
 font_size = 48
 outline_size = 14
@@ -149,6 +175,7 @@ surface_material_override/0 = SubResource("Mat_stone")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 3, 2.4)
 pixel_size = 0.015
 billboard = 1
+no_depth_test = true
 text = "Présentation"
 font_size = 48
 outline_size = 14
@@ -162,9 +189,15 @@ surface_material_override/0 = SubResource("Mat_door")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 2.9, -4.6)
 pixel_size = 0.015
 billboard = 1
+no_depth_test = true
 text = "Sortie"
 font_size = 48
 outline_size = 14
+
+[node name="Notebook" type="MeshInstance3D" parent="Furniture" unique_id=389332188]
+transform = Transform3D(0.42, 0, 0, 0, 0.09, 0, 0, 0, 0.3, 2, 0.95, -1.7)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_notebook")
 
 [node name="ExitZone" type="Area3D" parent="." unique_id=1062050085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 1.2, -4.7)
@@ -189,3 +222,261 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Ressortir"
+
+[node name="BackButton" type="Button" parent="UI" unique_id=1231962150]
+visible = false
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 164.0
+offset_bottom = 68.0
+text = "Retour"
+
+[node name="HintLabel" type="Label" parent="UI" unique_id=1354727391]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -152.0
+offset_right = 300.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.98, 0.95, 0.89, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 0.8)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CameraFocus" type="Node3D" parent="." unique_id=1032913741]
+
+[node name="Bookshelf" type="Marker3D" parent="CameraFocus" unique_id=327955650]
+transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 8.992355, 11.792355, 6.092355)
+
+[node name="WallMap" type="Marker3D" parent="CameraFocus" unique_id=262844474]
+transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 5.692355, 12.292355, 9.392355)
+
+[node name="Desk" type="Marker3D" parent="CameraFocus" unique_id=424670921]
+transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 12.792355, 11.392355, 8.292355)
+
+[node name="Fireplace" type="Marker3D" parent="CameraFocus" unique_id=62331618]
+transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 6.292355, 11.892355, 12.792355)
+
+[node name="Spots" type="Node3D" parent="." unique_id=1749633260]
+
+[node name="BookshelfSpot" type="Area3D" parent="Spots" unique_id=309485065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, -4.45)
+collision_layer = 2
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("4_spot")
+display_name = "Projets — mes réalisations"
+focus_marker = NodePath("../../CameraFocus/Bookshelf")
+focus_zoom = 4.5
+reveal_root = NodePath("../../Details/Projets")
+highlight_root = NodePath("../../Furniture/Bookshelf")
+
+[node name="Shape" type="CollisionShape3D" parent="Spots/BookshelfSpot" unique_id=1211366653]
+shape = SubResource("BoxShape3D_shelf")
+
+[node name="WallMapSpot" type="Area3D" parent="Spots" unique_id=1042554340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 1.9, -1)
+collision_layer = 2
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("4_spot")
+display_name = "Parcours"
+focus_marker = NodePath("../../CameraFocus/WallMap")
+focus_zoom = 4.2
+reveal_root = NodePath("../../Details/Parcours")
+highlight_root = NodePath("../../Furniture/WallMap")
+
+[node name="Shape" type="CollisionShape3D" parent="Spots/WallMapSpot" unique_id=1740397768]
+shape = SubResource("BoxShape3D_map")
+
+[node name="DeskSpot" type="Area3D" parent="Spots" unique_id=459664059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.9, -2.1)
+collision_layer = 2
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("4_spot")
+display_name = "Compétences"
+focus_marker = NodePath("../../CameraFocus/Desk")
+focus_zoom = 4.2
+reveal_root = NodePath("../../Details/Competences")
+highlight_root = NodePath("../../Furniture/Desk")
+
+[node name="Shape" type="CollisionShape3D" parent="Spots/DeskSpot" unique_id=368569752]
+shape = SubResource("BoxShape3D_desk")
+
+[node name="NotebookSpot" type="Area3D" parent="Spots/DeskSpot" unique_id=367568177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.05, 0.4)
+collision_layer = 2
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("4_spot")
+display_name = "Ouvrir le carnet de compétences"
+mode = 1
+document_path = "res://content/pages/competences.md"
+highlight_root = NodePath("../../../Furniture/Notebook")
+
+[node name="Shape" type="CollisionShape3D" parent="Spots/DeskSpot/NotebookSpot" unique_id=328973306]
+shape = SubResource("BoxShape3D_notebook")
+
+[node name="FireplaceSpot" type="Area3D" parent="Spots" unique_id=1624905904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 1.3, 2.4)
+collision_layer = 2
+collision_mask = 0
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("4_spot")
+display_name = "Présentation"
+focus_marker = NodePath("../../CameraFocus/Fireplace")
+focus_zoom = 4.6
+reveal_root = NodePath("../../Details/Presentation")
+highlight_root = NodePath("../../Furniture/Fireplace")
+
+[node name="Shape" type="CollisionShape3D" parent="Spots/FireplaceSpot" unique_id=1284859555]
+shape = SubResource("BoxShape3D_fireplace")
+
+[node name="Details" type="Node3D" parent="." unique_id=1974661909]
+
+[node name="Projets" type="Node3D" parent="Details" unique_id=306005683]
+
+[node name="Hint" type="Label3D" parent="Details/Projets" unique_id=1183575812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 2.5, -4.1)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Cliquez sur un livre pour l'ouvrir"
+font_size = 30
+outline_size = 10
+
+[node name="Parcours" type="Node3D" parent="Details" unique_id=29692438]
+
+[node name="Entry1" type="Label3D" parent="Details/Parcours" unique_id=282334600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 2.45, -1)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "BUT Informatique — Grenoble"
+font_size = 30
+outline_size = 10
+
+[node name="Entry2" type="Label3D" parent="Details/Parcours" unique_id=1484024101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 2.05, -1)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Fin 2024 · Site web d'entreprise"
+font_size = 30
+outline_size = 10
+
+[node name="Entry3" type="Label3D" parent="Details/Parcours" unique_id=1316917939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 1.65, -1)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "2025 · Application JavaFX"
+font_size = 30
+outline_size = 10
+
+[node name="Entry4" type="Label3D" parent="Details/Parcours" unique_id=574667420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 1.25, -1)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "2025-2026 · Application web Symfony"
+font_size = 30
+outline_size = 10
+
+[node name="Competences" type="Node3D" parent="Details" unique_id=1895400982]
+
+[node name="Entry1" type="Label3D" parent="Details/Competences" unique_id=2056736630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.1, -2)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Web · Symfony, Twig, HTML/CSS"
+font_size = 30
+outline_size = 10
+
+[node name="Entry2" type="Label3D" parent="Details/Competences" unique_id=636901632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.75, -2)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Applicatif · Java, JavaFX, Godot"
+font_size = 30
+outline_size = 10
+
+[node name="Entry3" type="Label3D" parent="Details/Competences" unique_id=1527624813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.4, -2)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Outils · Git, Docker, Blender"
+font_size = 30
+outline_size = 10
+
+[node name="NotebookHint" type="Label3D" parent="Details/Competences" unique_id=1577940934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.2, -1.5)
+pixel_size = 0.0055
+billboard = 1
+no_depth_test = true
+text = "Ouvrir le carnet"
+font_size = 28
+outline_size = 8
+
+[node name="Presentation" type="Node3D" parent="Details" unique_id=798485973]
+
+[node name="Entry1" type="Label3D" parent="Details/Presentation" unique_id=1022027268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 2.6, 2.4)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "FYRAXYS · Étudiant en BUT Informatique"
+font_size = 30
+outline_size = 10
+
+[node name="Entry2" type="Label3D" parent="Details/Presentation" unique_id=415073068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 2.3, 2.4)
+pixel_size = 0.0065
+billboard = 1
+no_depth_test = true
+text = "Grenoble · Savoie"
+font_size = 30
+outline_size = 10
+
+[node name="Text" type="Label3D" parent="Details/Presentation" unique_id=1574998714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 1.5, 2.4)
+pixel_size = 0.005
+billboard = 1
+no_depth_test = true
+text = "Passionné depuis longtemps par l'informatique et le codage. J'habite en Savoie, ce qui me permet de profiter de mon intérêt pour la montagne et le ski. Après mes études, j'aimerais devenir développeur d'applications et web."
+font_size = 26
+outline_size = 8
+width = 620.0
+autowrap_mode = 3
+
+[node name="BookshelfRack" type="Node3D" parent="." unique_id=1686428395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.15, -4.2)
+script = ExtResource("6_rack")
+shelf_spot = NodePath("../Spots/BookshelfSpot")
+
+[node name="FocusController" type="Node" parent="." unique_id=1847273013]
+script = ExtResource("5_focus")
+camera_path = NodePath("../Camera3D")
+
+[node name="DetailViewer" parent="." unique_id=736585929 instance=ExtResource("7_viewer")]

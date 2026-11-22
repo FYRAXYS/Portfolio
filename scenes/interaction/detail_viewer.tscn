@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Shader" path="res://materials/shaders/background_blur.gdshader" id="1_blur"]
+[ext_resource type="Script" path="res://scripts/interaction/detail_viewer.gd" id="2_viewer"]
+[ext_resource type="Script" path="res://scripts/interaction/book_3d.gd" id="3_book"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("1_blur")
+shader_parameter/amount = 0.0
+shader_parameter/radius = 9.0
+shader_parameter/mip_level = 0.0
+shader_parameter/saturation = 0.7
+shader_parameter/tint = Color(0.05, 0.04, 0.07, 0.42)
+
+[node name="DetailViewer" type="CanvasLayer"]
+layer = 64
+visible = false
+script = ExtResource("2_viewer")
+
+[node name="Blur" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+material = SubResource("ShaderMaterial_blur")
+
+[node name="BookView" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="BookViewport" type="SubViewport" parent="BookView"]
+unique_name_in_owner = true
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+msaa_3d = 1
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="Book" type="Node3D" parent="BookView/BookViewport"]
+unique_name_in_owner = true
+script = ExtResource("3_book")
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -420.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.98, 0.96, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.03, 0.05, 0.75)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Document"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PageIndicator" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -72.0
+offset_right = 120.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9, 0.87, 0.82, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.03, 0.05, 0.75)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Previous" type="Button" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -28.0
+offset_right = 96.0
+offset_bottom = 28.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "<"
+
+[node name="Next" type="Button" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -28.0
+offset_right = -28.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = ">"
+
+[node name="Close" type="Button" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = 62.0
+grow_horizontal = 0
+text = "Fermer"
