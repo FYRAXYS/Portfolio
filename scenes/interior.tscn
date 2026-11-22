@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://ltn3w6xlmvpu"]
 
 [ext_resource type="Script" uid="uid://cyrme3542vhqt" path="res://scripts/interior.gd" id="1_interior"]
+[ext_resource type="Script" uid="uid://du42501c2jmhc" path="res://scripts/interior_lighting.gd" id="2_cycle"]
+[ext_resource type="Resource" uid="uid://cf6o3xojq7u1a" path="res://ressources/day_cycle/day_cycle_palette.tres" id="3_palette"]
 
 [sub_resource type="Environment" id="Environment_interior"]
 background_mode = 1
 background_color = Color(0.08235294, 0.07058824, 0.09411765, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.5137255, 0.47843137, 0.42352942, 1)
-ambient_light_energy = 1.2
+ambient_light_color = Color(0.22, 0.17, 0.14, 1)
+ambient_light_energy = 2.8
 tonemap_mode = 4
 tonemap_white = 10.0
 
@@ -47,20 +49,27 @@ size = Vector3(1.6, 2.4, 0.8)
 [node name="Interior" type="Node3D" unique_id=2020399336]
 script = ExtResource("1_interior")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344328724]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344328724 node_paths=PackedStringArray("window_light", "lamp")]
 environment = SubResource("Environment_interior")
 camera_attributes = SubResource("CameraAttributesPractical_interior")
+script = ExtResource("2_cycle")
+palette = ExtResource("3_palette")
+window_light = NodePath("../SunThroughWindow")
+lamp = NodePath("../Lamp")
+preview_hours = 0.0
 
 [node name="SunThroughWindow" type="DirectionalLight3D" parent="." unique_id=98938599]
 transform = Transform3D(0.70710677, -0.35355338, 0.61237246, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.61237246, 0, 6, 0)
-light_intensity_lux = 6000.0
+light_intensity_lux = 250.0
+light_color = Color(0.62, 0.71, 1, 1)
 shadow_enabled = true
 
 [node name="Lamp" type="OmniLight3D" parent="." unique_id=2010583821]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.6, 0.5)
-light_intensity_lumens = 1200.0
+light_intensity_lumens = 28000.0
 light_color = Color(1, 0.84313726, 0.654902, 1)
-omni_range = 9.0
+light_energy = 10.0
+omni_range = 16.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1075423714]
 transform = Transform3D(0.70710677, -0.40824437, 0.57735306, 0, 0.8165005, 0.5773447, -0.70710677, -0.40824437, 0.57735306, 10.392355, 11.592205, 10.392355)

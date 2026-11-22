@@ -24,6 +24,7 @@ config/icon="uid://brxvfdaxopcpr"
 [autoload]
 
 Game="*res://scripts/game.gd"
+DayCycle="*res://scripts/day_cycle.gd"
 
 [display]
 

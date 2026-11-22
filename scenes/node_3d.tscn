@@ -8,27 +8,48 @@
 [ext_resource type="PackedScene" uid="uid://7ybgyc5xeoig" path="res://materials/objets/clouds/cloud2.blend" id="4_oqwcg"]
 [ext_resource type="PackedScene" uid="uid://7sbh3jpyfrqn" path="res://materials/objets/clouds/cloud3.blend" id="5_a6664"]
 [ext_resource type="PackedScene" uid="uid://dw1aesoqymha5" path="res://materials/objets/house/house.blend" id="8_cptob"]
+[ext_resource type="Shader" uid="uid://d0w5yeact4lp2" path="res://materials/shaders/sky_cycle.gdshader" id="9_sky"]
+[ext_resource type="Script" uid="uid://ccv7ks6c1o611" path="res://scripts/sky_cycle.gd" id="10_cycle"]
+[ext_resource type="Resource" uid="uid://cf6o3xojq7u1a" path="res://ressources/day_cycle/day_cycle_palette.tres" id="11_palette"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ns6u7"]
-rayleigh_color = Color(0.36513993, 0.7665061, 0.9999997, 1)
-mie_color = Color(0.34295997, 0.795164, 0.9209513, 1)
-ground_color = Color(0.039215688, 0.73333335, 0.9137255, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
+shader = ExtResource("9_sky")
+shader_parameter/zenith_color = Color(0.03568182, 0.27810606, 0.69242424, 1)
+shader_parameter/horizon_color = Color(0.28272727, 0.6962121, 0.94863635, 1)
+shader_parameter/ground_color = Color(0.09, 0.55, 0.72, 1)
+shader_parameter/horizon_falloff = 1.6
+shader_parameter/sky_energy = 1.3
+shader_parameter/sun_direction = Vector3(-0.5441206, 0.8386706, 0.023756789)
+shader_parameter/sun_color = Color(1, 0.9650152, 0.90975, 1)
+shader_parameter/sun_energy = 12.0
+shader_parameter/sun_size_deg = 3.0
+shader_parameter/halo_energy = 0.5
+shader_parameter/halo_spread = 32.0
+shader_parameter/star_amount = 0.0
+shader_parameter/star_density = 80.0
+shader_parameter/star_threshold = 0.958
+shader_parameter/star_energy = 3.0
+shader_parameter/star_min_height = 0.05
 
 [sub_resource type="Sky" id="Sky_5t4e2"]
-sky_material = SubResource("PhysicalSkyMaterial_ns6u7")
+sky_material = SubResource("ShaderMaterial_sky")
 
 [sub_resource type="Environment" id="Environment_xvgsr"]
 background_mode = 2
 background_energy_multiplier = 1.1
 sky = SubResource("Sky_5t4e2")
+ambient_light_source = 2
+ambient_light_color = Color(0.28272727, 0.6962121, 0.94863635, 1)
+ambient_light_energy = 0.6
 tonemap_mode = 4
 tonemap_white = 10.0
 tonemap_agx_white = 22.6
 tonemap_agx_contrast = 1.5
 fog_enabled = true
-fog_light_color = Color(0.05490196, 0.61960787, 0.96862745, 1)
+fog_light_color = Color(0.14734851, 0.6094697, 0.9462121, 1)
 fog_sun_scatter = 0.3
 fog_density = 0.005
+fog_sky_affect = 0.0
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oqwcg"]
 
@@ -110,16 +131,22 @@ depth = 0.03
 [node name="Node3D" type="Node3D" unique_id=1663185536]
 script = ExtResource("1_10v3s")
 
-[node name="Environnement" type="Node" parent="." unique_id=1101064324]
+[node name="Environnement" type="Node" parent="." unique_id=1101064324 node_paths=PackedStringArray("world_environment", "sun", "cabin_glows")]
+script = ExtResource("10_cycle")
+palette = ExtResource("11_palette")
+world_environment = NodePath("WorldEnvironment")
+sun = NodePath("DirectionalLight3D")
+cabin_glows = NodePath("../CabinGlows")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environnement" unique_id=625911439]
 environment = SubResource("Environment_xvgsr")
 camera_attributes = SubResource("CameraAttributesPractical_oqwcg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environnement" unique_id=396928883]
-transform = Transform3D(-0.7979058, 0.2674373, -0.54020715, -0.5236197, 0.13644557, 0.8409549, 0.29861158, 0.9538658, 0.031164728, 0, 0, 0)
-light_intensity_lux = 30198.02
+transform = Transform3D(0.043619335, 0.8378723, -0.5441206, 0, 0.54463893, 0.8386706, 0.99904823, -0.03658225, 0.02375679, 0, 0, 0)
+light_intensity_lux = 7000.0
 light_temperature = 5500.0
+light_color = Color(1, 0.9650152, 0.90975, 1)
 light_energy = 5.0
 shadow_enabled = true
 
@@ -161,6 +188,24 @@ amount = 30
 lifetime = 4.5
 process_material = SubResource("ParticleProcessMaterial_cptob")
 draw_pass_1 = SubResource("QuadMesh_68pkx")
+
+[node name="CabinGlows" type="Node3D" parent="." unique_id=701010]
+
+[node name="GlowLeft" type="OmniLight3D" parent="CabinGlows" unique_id=701011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8285, 0.205, -0.0686)
+visible = false
+light_intensity_lumens = 0.0
+light_color = Color(1, 0.78, 0.45, 1)
+light_energy = 5.0
+omni_range = 0.3
+
+[node name="GlowRight" type="OmniLight3D" parent="CabinGlows" unique_id=701012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8063, 0.205, 0.0186)
+visible = false
+light_intensity_lumens = 0.0
+light_color = Color(1, 0.78, 0.45, 1)
+light_energy = 5.0
+omni_range = 0.3
 
 [node name="Clouds" type="Node3D" parent="." unique_id=13401165]
 transform = Transform3D(0.11247786, 0, 0.99365413, 0, 1, 0, -0.99365413, 0, 0.11247786, -4.398063, 0, 24.110456)
